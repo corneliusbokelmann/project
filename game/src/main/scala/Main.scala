@@ -1,28 +1,9 @@
-import scala.main
+@main def mastermind: Unit =
+  println("Willkommen zu Mastermind!")
+  println(mesh())
 
-object Main {
-  @main def run(): Unit = {
-    // Define a multiline string for the playing field
-    val fieldString =
-      """
-          +---+---+---+---+
-          | - | - | - | - |
-          +---+---+---+---+
-          | - | - | - | - |
-          +---+---+---+---+
-          | - | - | - | - |
-          +---+---+---+---+
-          | - | - | - | - |
-          +---+---+---+---+
-          | - | - | - | - |
-          +---+---+---+---+"""
-
-    // Print out the playing field string
-    println(fieldString)
-
-    println(msg)
-  }
-
-  def msg = "I was compiled by Scala 3. :)"
-}
-
+val eol = sys.props("line.separator")
+def bar(barWidth: Int = 2) = "+---" * barWidth + "+" + eol
+def cells(cellWidth: Int = 2) = "|   " * cellWidth + "|" + eol
+def mesh(width: Int = 1, length: Int = 3) =
+  (bar(width) + cells(width)) * length + bar(width)
