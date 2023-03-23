@@ -22,11 +22,18 @@ local.sbt
 .vscode/
 
 # Metals
-.bloop/
 .metals/
+.bloop/
 metals.sbt
 
 # IDEA
 .idea
 .idea_modules
 /.worksheet/
+
+input
+out
+.json
+.db
+.log
+export
