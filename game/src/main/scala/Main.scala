@@ -1,4 +1,4 @@
-import scala.annotation.main
+import scala.main
 
 object Main {
   @main def run(): Unit = {
