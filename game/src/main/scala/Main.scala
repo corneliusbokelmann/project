@@ -1,5 +1,27 @@
-@main def hello: Unit = 
-  println("Hello world!")
-  println(msg)
+import scala.annotation.main
 
-def msg = "I was compiled by Scala 3. :)"
+object Main {
+  @main def run(): Unit = {
+    // Define a multiline string for the playing field
+    val fieldString =
+      """+---+---+---+---+
+         | - | - | - | - |
+         +---+---+---+---+
+         | - | - | - | - |
+         +---+---+---+---+
+         | - | - | - | - |
+         +---+---+---+---+
+         | - | - | - | - |
+         +---+---+---+---+
+         | - | - | - | - |
+         +---+---+---+---+"""
+
+    // Print out the playing field string
+    println(fieldString)
+
+    println(msg)
+  }
+
+  def msg = "I was compiled by Scala 3. :)"
+}
+
