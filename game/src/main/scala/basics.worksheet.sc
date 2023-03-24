@@ -27,4 +27,54 @@ val person = Person("Alice", 25)
 // Print out the person object
 println(person)
 
-println("test")
+case class Point(colour: Int) {
+  def sameColourPoint(c: Point): Boolean =
+    if (this.colour == c.colour) then return true
+    else return false
+}
+
+case class Line(point: Array[Point])
+
+case class Field(line: Array[Line])
+
+val p0 = Point(1)
+val p1 = Point(1)
+val p2 = Point(2)
+val p3 = Point(2)
+val p4 = Point(2)
+val p5 = Point(3)
+
+p0.sameColourPoint(p1)
+p0.sameColourPoint(p2)
+
+val line1 = Line(Array.ofDim[Point](4))
+line1.point(0) = p0
+line1.point(1) = p1
+line1.point(2) = p2
+val line2 = Line(Array.ofDim[Point](4))
+line2.point(0) = p3
+line2.point(1) = p4
+line2.point(2) = p5
+
+line1.point(0).colour
+line1.point(1).colour
+line1.point(2).colour
+line2.point(0).colour
+line2.point(1).colour
+line2.point(2).colour
+
+line1.point(2).sameColourPoint(line2.point(1))
+
+val field = Field(Array.ofDim[Line](7))
+field.line(0) = line1
+field.line(1) = line2
+
+field.line(0).point(0).colour
+field.line(0).point(1).colour
+field.line(0).point(2).colour
+field.line(1).point(0).colour
+field.line(1).point(1).colour
+field.line(1).point(2).colour
+
+field.line(0).point(0).sameColourPoint(field.line(0).point(1))
+
