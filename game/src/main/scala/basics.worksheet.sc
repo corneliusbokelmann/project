@@ -6,7 +6,7 @@ val isMarried = false
 
 // Print out the variables
 println(s"Name: $name")
-println(s"Age: $age")
+println(s"Age: $age") 
 println(s"Height: $height")
 println(s"Married: $isMarried")
 
