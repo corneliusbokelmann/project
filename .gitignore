@@ -22,8 +22,8 @@ local.sbt
 .vscode/
 
 # Metals
-.metals/
 .bloop/
+.metals/
 metals.sbt
 
 # IDEA
