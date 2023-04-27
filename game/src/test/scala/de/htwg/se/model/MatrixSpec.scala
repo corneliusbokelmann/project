@@ -9,7 +9,7 @@ class MatrixSpec extends AnyWordSpec {
         "empty" should {
             "be created by points, guess length and a filling" in {
                 val matrix = new Matrix[Point](2, 4, Point.e);
-                matrix.pointslength should be(2)
+                matrix.pointslength should be(5)
                 matrix.guesslegth should be(4)
             }
             "for test purposes only be created with a Vector of Vectors" in {
@@ -31,6 +31,9 @@ class MatrixSpec extends AnyWordSpec {
             "be completely filled with given filling by fill operation" in {
                 val newmatrix = matrix.fill(Point.w)
                 newmatrix.cell(1, 2) should be (Point.w)
+            }
+            "give access to its rows" in {
+                matrix.row(0) should be (matrix.rows(0))
             }
         }
     }
