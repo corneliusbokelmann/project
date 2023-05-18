@@ -2,9 +2,9 @@ name: Scala CI
 
 on:
   push:
-    branches: [6condev]
+    branches: [ master ]
   pull_request:
-    branches: [6condev]
+    branches: [ master ]
 
 jobs:
   build:
