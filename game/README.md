@@ -6,3 +6,6 @@ This is a normal sbt project. You can compile code with `sbt compile`, run it wi
 
 For more information on the sbt-dotty plugin, see the
 [scala3-example-project](https://github.com/scala/scala3-example-project/blob/main/README.md).
+
+<a href='https://coveralls.io/github/corneliusbokelmann/project?branch=master'><img src='https://coveralls.io/repos/github/corneliusbokelmann/project/badge.svg?branch=master' alt='Coverage Status' /></a>
+
