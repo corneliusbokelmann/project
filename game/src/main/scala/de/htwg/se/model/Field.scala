@@ -8,7 +8,7 @@ case class Field(matrix: Matrix[Point]){
   def bar(barWidth: Int = matrix.pointslength / 2): String =
     val s = ("+---" * barWidth + "+")
     val x = (s + " " + s + eol)
-    x.toString()
+    x.toString() 
 
   //def vec(row: Int): IndexedSeq[Point] = (0 until matrix.pointslength / 2).map(matrix.rows(row))
 
