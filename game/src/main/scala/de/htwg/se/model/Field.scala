@@ -16,7 +16,7 @@ case class Field(matrix: Matrix[Option[Point]]) {
         val cell = row(col)
         val cellStr = cell match {
           case Some(value) => value.toString
-          case None => "Nothing"
+          case None => " "
         }
         sb.append(cellStr).append(" ")
       }
@@ -24,4 +24,5 @@ case class Field(matrix: Matrix[Option[Point]]) {
     }
     sb.toString()
   }
+
 }

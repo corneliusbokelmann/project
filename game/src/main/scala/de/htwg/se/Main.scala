@@ -1,7 +1,7 @@
 package de.htwg.se
 
 import de.htwg.se.model.{Field, FeedbackField, Matrix, Point, PointFactory}
-import de.htwg.se.util.Observer
+/* import de.htwg.se.util.Observer */
 import de.htwg.se.aview.{TUI, StandardInput}
 import de.htwg.se.controler.{Controller, AddCommand, RemoveCommand}
 

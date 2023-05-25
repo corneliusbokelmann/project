@@ -43,7 +43,9 @@ case class Controller(var field: Field, var feedbackField: FeedbackField) extend
 
   def makeMove(point: Point, x: Int, y: Int): Unit = {
     gameState.makeMove(this, point, x, y)
+    field = receiver.field // Update the field with the new field after executing the command
   }
+
 
   def undoLastMove(): Unit = {
     if (commandHistory.nonEmpty) {
@@ -51,6 +53,15 @@ case class Controller(var field: Field, var feedbackField: FeedbackField) extend
       val result = command.undo()
       result match {
         case Success(_) =>
+          command match {
+            case AddCommand(_, point, x, y) =>
+              field = field.put(PointFactory.createPoint(" "), x, y)
+              feedbackField.updateFeedback(field, x, y)
+            case RemoveCommand(_, x, y) =>
+              val removedPoint = command.asInstanceOf[RemoveCommand].removedPoint.getOrElse(throw new IllegalStateException("Error: No point to add during undo."))
+              field = field.put(removedPoint, x, y)
+              feedbackField.updateFeedback(field, x, y)
+          }
           notifyObservers()
         case Failure(ex) =>
           println(s"Undo failed: ${ex.getMessage}")
@@ -59,6 +70,10 @@ case class Controller(var field: Field, var feedbackField: FeedbackField) extend
       println("No move to undo.")
     }
   }
+
+
+
+
 
   def setGameState(gameState: GameState): Unit = {
     this.gameState = gameState

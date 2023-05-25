@@ -8,14 +8,14 @@ case class AddCommand(receiver: Receiver, point: Point, x: Int, y: Int) extends 
 
   override def execute(): Try[Unit] = {
     receiver.get(x, y) match {
-      case Some(_) =>
-        removedPoint = receiver.get(x, y)
-        Try(())
       case None =>
         receiver.add(point, x, y)
         Try(())
+      case Some(_) =>
+        Failure(new IllegalStateException("Position already has a point."))
     }
   }
+
 
   override def undo(): Try[Unit] = removedPoint match {
     case Some(p) => Try(receiver.add(p, x, y))
