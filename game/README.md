@@ -9,4 +9,5 @@ For more information on the sbt-dotty plugin, see the
 
 <a href='https://coveralls.io/github/corneliusbokelmann/project?branch=master'><img src='https://coveralls.io/repos/github/corneliusbokelmann/project/badge.svg?branch=master' alt='Coverage Status' /></a>
 
+I really want to trigger a build
 
