@@ -1,27 +1,53 @@
-
 package de.htwg.se.model
 
-case class Field(matrix: Matrix[Point]){
-  def this(pointslength: Int, guesslegth: Int, filling: Point) = this(new Matrix(pointslength, guesslegth, filling))
-  val eol = sys.props("line.separator")
+case class Field(matrix: Matrix[Point]) {
+  def this(pointslength: Int, guesslength: Int, filling: Point) =
+    this(new Matrix(pointslength, guesslength, filling))
 
-  def bar(barWidth: Int = matrix.pointslength / 2): String =
-    val s = ("+---" * barWidth + "+")
-    val x = (s + " " + s + eol)
-    x.toString() 
+  def put(point: Point, x: Int, y: Int): Field = {
+    val updatedMatrix = matrix.replaceCell(x, y, point)
+    copy(matrix = updatedMatrix)
+  }
 
-  //def vec(row: Int): IndexedSeq[Point] = (0 until matrix.pointslength / 2).map(matrix.rows(row))
+  override def toString: String = matrix.toString
+}
 
-  def cells(row : Int): String = 
-    //val first = vec(row).map(_.toString()).map(" " + _ + " " ).mkString("|","|","|")
-    val first = (0 until (matrix.pointslength - 1) / 2).map(matrix.rows(row)).map(_.toString()).map(" " + _ + " " ).mkString("|","|","|")
-    val second = ((matrix.pointslength - 1) / 2 until matrix.pointslength - 1).map(matrix.rows(row)).map(_.toString()).map(" " + _ + " " ).mkString("|","|","|")
-    val x = first + " " + second + eol
-    x.toString()
+case class FeedbackField(guesslength: Int) {
+  private var feedbackMatrix: Matrix[Feedback] = new Matrix(guesslength, guesslength, Feedback.Nothing)
 
-  def mesh(cellWidth: Int = matrix.pointslength / 2): String =
-    (0 until matrix.guesslegth).map(cells(_)).mkString(bar(cellWidth), bar(cellWidth), bar(cellWidth))
+  def updateFeedback(field: Field, x: Int, y: Int): Unit = {
+    val guess = field.matrix.row(y)
+    val solution = field.matrix.rows(x)
+    val updatedMatrix = feedbackMatrix.replaceCell(solution, guess)
+    feedbackMatrix = updatedMatrix
+  }
 
-  override def toString = mesh()
-  def put(point: Point, x: Int, y: Int) = copy(matrix.replaceCell(x, y, point))
+  override def toString: String = feedbackMatrix.toString
+}
+
+sealed trait Feedback
+object Feedback {
+  case object Nothing extends Feedback
+  case object ColorCorrect extends Feedback
+  case object PositionCorrect extends Feedback
+}
+
+implicit class FeedbackMatrixOps(matrix: Matrix[Feedback]) {
+  def replaceCell(solution: Vector[Point], guess: Vector[Point]): Matrix[Feedback] = {
+    val minLength = Math.min(solution.length, guess.length)
+    val updatedRows = matrix.rows.zipWithIndex.map { case (row, i) =>
+      if (i < minLength) {
+        if (solution(i) == guess(i)) {
+          row.updated(i, Feedback.PositionCorrect)
+        } else if (solution.contains(guess(i))) {
+          row.updated(i, Feedback.ColorCorrect)
+        } else {
+          row.updated(i, Feedback.Nothing)
+        }
+      } else {
+        row
+      }
+    }
+    matrix.copy(rows = updatedRows)
+  }
 }
