@@ -369,3 +369,27 @@ INFORMATION: Schema "PUBLIC" is up to date. No migration necessary.
 2023.04.30 14:35:01 INFO  Shutting down server
 2023.04.30 14:35:01 INFO  shutting down Metals
 2023.04.30 14:35:01 INFO  Exiting server
+2023.05.25 08:35:33 INFO  Started: Metals version 0.11.12 in workspace 'D:\Charly\HTWG\Sem8\SE\project' for client Visual Studio Code 1.78.2.
+Mai 25, 2023 8:35:33 AM org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+INFORMATION: Flyway Community Edition 9.16.3 by Redgate
+Mai 25, 2023 8:35:33 AM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFORMATION: See release notes here: https://rd.gt/416ObMi
+Mai 25, 2023 8:35:33 AM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFORMATION: 
+Mai 25, 2023 8:35:34 AM org.flywaydb.core.internal.database.base.BaseDatabaseType createDatabase
+INFORMATION: Database: jdbc:h2:file:D:\Charly\HTWG\Sem8\SE\project\.metals\metals (H2 2.1)
+Mai 25, 2023 8:35:34 AM org.flywaydb.core.internal.command.DbValidate validate
+INFORMATION: Successfully validated 4 migrations (execution time 00:00.042s)
+Mai 25, 2023 8:35:34 AM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFORMATION: Current version of schema "PUBLIC": 4
+Mai 25, 2023 8:35:34 AM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFORMATION: Schema "PUBLIC" is up to date. No migration necessary.
+2023.05.25 08:35:34 INFO  time: initialize in 0.85s
+2023.05.25 08:35:35 WARN  Build server is not auto-connectable.
+2023.05.25 08:35:35 WARN  no build tool detected in workspace 'D:\Charly\HTWG\Sem8\SE\project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2023.05.25 08:35:36 WARN  no build target for: D:\Charly\HTWG\Sem8\SE\project\game\src\main\scala\de\htwg\se\aview\TUI.scala
+2023.05.25 08:35:40 INFO  no build target found for D:\Charly\HTWG\Sem8\SE\project\game\src\main\scala\de\htwg\se\aview\TUI.scala. Using presentation compiler with project's scala-library version: 3.2.2
+2023.05.25 08:35:45 INFO  time: code lens generation in 9.48s
+2023.05.25 08:38:07 WARN  no build target for: D:\Charly\HTWG\Sem8\SE\project\game\src\main\scala\de\htwg\se\model\Field.scala
+2023.05.25 08:38:10 WARN  no build target for: D:\Charly\HTWG\Sem8\SE\project\game\src\main\scala\de\htwg\se\Main.scala
+2023.05.25 10:02:45 WARN  no build target for: D:\Charly\HTWG\Sem8\SE\project\game\build.sbt
