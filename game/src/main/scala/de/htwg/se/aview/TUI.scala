@@ -5,6 +5,7 @@ import de.htwg.se.model.Point
 import de.htwg.se.util.Observer
 
 import scala.io.StdIn.readLine
+import scala.util.{Failure, Success, Try}
 
 trait InputStrategy {
   def handleInput(input: String, controller: Controller): Unit
@@ -26,9 +27,10 @@ class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer
   }
 
   override def update(): Unit = {
-    println(controller.field.toString)
-    println(controller.feedbackField.toString)
+    println(controller.field)
+    println(controller.feedbackField)
   }
+
 
   private def getInputAndPrintLoop(): Unit = {
     println("Enter your move (<Color><x><y>, e.g., R02, q to quit, u to undo):")
@@ -44,10 +46,10 @@ class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer
     lastCommand match {
       case Some(command) =>
         command.undo() match {
-          case util.Success(_) =>
+          case Success(_) =>
             lastCommand = None
             controller.notifyObservers()
-          case util.Failure(exception) =>
+          case Failure(exception) =>
             println(s"Undo failed: ${exception.getMessage}")
         }
       case None =>
@@ -55,20 +57,32 @@ class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer
     }
   }
 
-  def executeCommand(command: Command): Unit = {
-    command.execute() match {
-      case util.Success(_) =>
+
+  private def executeCommand(command: Command): Unit = {
+    val result = Try(command.execute())
+    result match {
+      case Success(_) =>
         lastCommand = Some(command)
         controller.notifyObservers()
-      case util.Failure(exception) =>
+      case Failure(exception) =>
         println(s"Command execution failed: ${exception.getMessage}")
     }
   }
 
+
   def createAddCommand(point: Point, x: Int, y: Int): Unit = {
-    val command = AddCommand(controller.getReceiver, point, x, y)
-    executeCommand(command)
+    val receiver = controller.getReceiver
+    receiver.get(x, y) match {
+      case Some(_) =>
+        receiver.remove(x, y)
+        receiver.add(point, x, y)
+        controller.notifyObservers()
+      case None =>
+        val command = AddCommand(receiver, point, x, y)
+        executeCommand(command)
+    }
   }
+
 
   def createRemoveCommand(x: Int, y: Int): Unit = {
     val command = RemoveCommand(controller.getReceiver, x, y)

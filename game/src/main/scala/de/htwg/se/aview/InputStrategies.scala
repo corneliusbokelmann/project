@@ -8,6 +8,7 @@ class StandardInput extends InputStrategy {
   override def handleInput(input: String, controller: Controller): Unit = {
     input match {
       case "q" =>
+      case "u" => controller.undoLastMove()
       case _ =>
         val chars = input.toCharArray
         val color = chars(0).toString

@@ -10,10 +10,13 @@ case class RemoveCommand(receiver: Receiver, x: Int, y: Int) extends Command {
     receiver.get(x, y) match {
       case Some(p) =>
         removedPoint = Some(p)
-        Try(receiver.remove(x, y)).map(_ => ())
-      case None => Failure(new IllegalStateException("No element at the specified position."))
+        receiver.remove(x, y)
+        Try(())
+      case None =>
+        Failure(new IllegalStateException("No element at the specified position."))
     }
   }
+
 
   override def undo(): Try[Unit] = removedPoint match {
     case Some(p) => Try(receiver.add(p, x, y))
