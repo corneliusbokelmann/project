@@ -22,8 +22,8 @@ local.sbt
 .vscode/
 
 # Metals
-.metals/
 .bloop/
+.metals/
 metals.sbt
 
 # IDEA
@@ -37,3 +37,4 @@ out
 .db
 .log
 export
+null/
