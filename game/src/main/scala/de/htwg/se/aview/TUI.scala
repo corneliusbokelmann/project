@@ -1,11 +1,10 @@
 package de.htwg.se.aview
 
-import de.htwg.se.controler.{Command, Controller, AddCommand, RemoveCommand, Receiver}
-import de.htwg.se.model.{Point, PointFactory}
+import de.htwg.se.controler.{Controller, AddCommand, RemoveCommand, Command}
+import de.htwg.se.model.Point
 import de.htwg.se.util.Observer
 
 import scala.io.StdIn.readLine
-
 
 trait InputStrategy {
   def handleInput(input: String, controller: Controller): Unit
@@ -48,8 +47,8 @@ class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer
           case util.Success(_) =>
             lastCommand = None
             controller.notifyObservers()
-          case util.Failure(ex) =>
-            println(s"Undo failed: ${ex.getMessage}")
+          case util.Failure(exception) =>
+            println(s"Undo failed: ${exception.getMessage}")
         }
       case None =>
         println("No command to undo.")
@@ -61,8 +60,8 @@ class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer
       case util.Success(_) =>
         lastCommand = Some(command)
         controller.notifyObservers()
-      case util.Failure(ex) =>
-        println(s"Command execution failed: ${ex.getMessage}")
+      case util.Failure(exception) =>
+        println(s"Command execution failed: ${exception.getMessage}")
     }
   }
 
@@ -76,5 +75,3 @@ class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer
     executeCommand(command)
   }
 }
-
-
