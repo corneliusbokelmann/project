@@ -1,9 +1,7 @@
 language: scala
 scala:
 - 2.12.7
-branches:
-  only:
-    - "6condev"
+
 script:
 - sbt clean coverage test coverageReport
 
