@@ -6,3 +6,5 @@ Scala Project for SE
 [![Build Status](https://app.travis-ci.com/corneliusbokelmann/project.svg?branch=8Patterns)](https://app.travis-ci.com/corneliusbokelmann/project)
 
 We will be providing small introductionary steps to our game in later iterations.
+
+0ggph4zLoRNjW8jUKRg7Q7PP0lPBiwqo9
