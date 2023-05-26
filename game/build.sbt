@@ -10,4 +10,6 @@ lazy val root = project
     libraryDependencies += ("org.scalactic" %% "scalactic" % "3.2.14"),
     libraryDependencies += ("org.scalatest" %% "scalatest" % "3.2.14" % "test"),
     coverageEnabled := true
+    // Configure sbt-coveralls plugin
+    coverallsToken := Some("0ggph4zLoRNjW8jUKRg7Q7PP0lPBiwqo9")
   )
