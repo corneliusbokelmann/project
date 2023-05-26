@@ -2,9 +2,13 @@ name: Scala CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+      - 8Pattern
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+      - 8Pattern
 
 jobs:
   build:
