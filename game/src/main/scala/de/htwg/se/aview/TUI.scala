@@ -1,43 +1,78 @@
 package de.htwg.se.aview
 
-import de.htwg.se.controler._
+import de.htwg.se.controler.{Controller, AddCommand, RemoveCommand, Command}
 import de.htwg.se.model.Point
+import de.htwg.se.util.Observer
+
 import scala.io.StdIn.readLine
-import de.htwg.se.util._
 
+trait InputStrategy {
+  def handleInput(input: String, controller: Controller): Unit
+}
 
-class TUI(controller: Controller) extends Observer {
+class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer {
+  private var lastCommand: Option[Command] = None
+
   controller.add(this)
 
-  def run = {
+  def run(): Unit = {
     println(controller.toString)
     var input: String = ""
     while (input != "q") {
       getInputAndPrintLoop()
-      input = readLine
+      input = readLine()
+      inputStrategy.handleInput(input, controller)
     }
   }
 
-  override def update = println(controller.field.toString)
+  override def update(): Unit = {
+    println(controller.field)
+    println(controller.feedbackField)
+  }
 
-  def getInputAndPrintLoop(): Unit = {
-    println("Enter your move (<Stone><x><y>, eg. x02, q to quit):")
-    val input = readLine
-    input match {
-      case _ => {
-        val chars = input.toCharArray
-        val point = chars(0) match {
-          case 'W' => Point.w
-          case 'B' => Point.b
-          case 'G' => Point.g
-          case 'R' => Point.r
-          case _  => Point.e
-        }
-        val x = chars(1).toString.toInt
-        val y = chars(2).toString.toInt
-        controller.put(point, x, y)
-        println(controller.toString)
-      }
+  private def getInputAndPrintLoop(): Unit = {
+    println("Enter your move (<Color><x><y>, e.g., R02, q to quit, u to undo):")
+    val input = readLine()
+    if (input.toLowerCase() == "u") {
+      controller.undoLastMove() // changed from undoLastCommand()
+    } else {
+      inputStrategy.handleInput(input, controller)
     }
+  }
+
+
+  private def undoLastCommand(): Unit = {
+    lastCommand match {
+      case Some(command) =>
+        command.undo() match {
+          case util.Success(_) =>
+            lastCommand = None
+            controller.notifyObservers()
+          case util.Failure(exception) =>
+            println(s"Undo failed: ${exception.getMessage}")
+        }
+      case None =>
+        println("No command to undo.")
+    }
+  }
+
+  def executeCommand(command: Command): Unit = {
+    command.execute() match {
+      case util.Success(_) =>
+        lastCommand = Some(command)
+        controller.notifyObservers()
+      case util.Failure(exception) =>
+        println(s"Command execution failed: ${exception.getMessage}")
+    }
+  }
+
+  def createAddCommand(point: Point, x: Int, y: Int): Unit = {
+    val command = AddCommand(controller.getReceiver, point, x, y)
+    executeCommand(command)
+  }
+
+  def createRemoveCommand(x: Int, y: Int): Unit = {
+    val command = RemoveCommand(controller.getReceiver, x, y)
+    executeCommand(command)
   }
 }

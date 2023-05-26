@@ -1,27 +1,28 @@
-
 package de.htwg.se.model
 
-case class Field(matrix: Matrix[Point]){
-  def this(pointslength: Int, guesslegth: Int, filling: Point) = this(new Matrix(pointslength, guesslegth, filling))
-  val eol = sys.props("line.separator")
+case class Field(matrix: Matrix[Option[Point]]) {
+  def this(pointslength: Int, guesslength: Int, filling: Point) =
+    this(new Matrix(pointslength, guesslength, Some(filling)))
 
-  def bar(barWidth: Int = matrix.pointslength / 2): String =
-    val s = ("+---" * barWidth + "+")
-    val x = (s + " " + s + eol)
-    x.toString() 
+  def put(point: Point, x: Int, y: Int): Field = {
+    val updatedMatrix = matrix.replaceCell(x, y, Some(point))
+    copy(matrix = updatedMatrix)
+  }
 
-  //def vec(row: Int): IndexedSeq[Point] = (0 until matrix.pointslength / 2).map(matrix.rows(row))
+  override def toString: String = {
+    val sb = new StringBuilder
+    for (row <- matrix.rows) {
+      for (col <- 0 until row.length) {
+        val cell = row(col)
+        val cellStr = cell match {
+          case Some(value) => value.toString
+          case None => " "
+        }
+        sb.append(cellStr).append(" ")
+      }
+      sb.append("\n")
+    }
+    sb.toString()
+  }
 
-  def cells(row : Int): String = 
-    //val first = vec(row).map(_.toString()).map(" " + _ + " " ).mkString("|","|","|")
-    val first = (0 until (matrix.pointslength - 1) / 2).map(matrix.rows(row)).map(_.toString()).map(" " + _ + " " ).mkString("|","|","|")
-    val second = ((matrix.pointslength - 1) / 2 until matrix.pointslength - 1).map(matrix.rows(row)).map(_.toString()).map(" " + _ + " " ).mkString("|","|","|")
-    val x = first + " " + second + eol
-    x.toString()
-
-  def mesh(cellWidth: Int = matrix.pointslength / 2): String =
-    (0 until matrix.guesslegth).map(cells(_)).mkString(bar(cellWidth), bar(cellWidth), bar(cellWidth))
-
-  override def toString = mesh()
-  def put(point: Point, x: Int, y: Int) = copy(matrix.replaceCell(x, y, point))
 }

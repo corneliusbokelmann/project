@@ -1,10 +1,21 @@
 package de.htwg.se.util
 
-trait Observer:
-    def update: Unit
+trait Observer {
+  def update(): Unit
+}
 
-trait Observable:
-    var subscribers: Vector[Observer] = Vector()
-    def add(s: Observer) = subscribers = subscribers :+ s
-    def remove(s: Observer) = subscribers = subscribers.filterNot(o => o == s)
-    def notifyObservers = subscribers.foreach(o => o.update)
+trait Observable {
+  private var subscribers: Vector[Observer] = Vector()
+
+  def add(observer: Observer): Unit = {
+    subscribers = subscribers :+ observer
+  }
+
+  def remove(observer: Observer): Unit = {
+    subscribers = subscribers.filterNot(_ == observer)
+  }
+
+  def notifyObservers(): Unit = {
+    subscribers.foreach(_.update())
+  }
+}

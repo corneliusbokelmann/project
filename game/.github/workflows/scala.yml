@@ -2,9 +2,13 @@ name: Scala CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+      - 8Pattern
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+      - 8Pattern
 
 jobs:
   build:
@@ -20,14 +24,11 @@ jobs:
         distribution: 'adopt'
     - name: compile
       run: sbt compile
-  tests:
-    runs-on: ubuntu-latest 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build Project and export Coverage
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          export CI_BRANCH="${GITHUB_REF#refs/heads/}"
-          sbt coverage test
-          sbt coverageReport
+    - name: Run tests with coverage and upload to Coveralls
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        export CI_BRANCH="${GITHUB_REF#refs/heads/}"
+        sbt coverage test
+        sbt coverageReport
+        sbt coveralls
