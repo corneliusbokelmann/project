@@ -34,11 +34,12 @@ class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer
     println("Enter your move (<Color><x><y>, e.g., R02, q to quit, u to undo):")
     val input = readLine()
     if (input.toLowerCase() == "u") {
-      undoLastCommand()
+      controller.undoLastMove() // changed from undoLastCommand()
     } else {
       inputStrategy.handleInput(input, controller)
     }
   }
+
 
   private def undoLastCommand(): Unit = {
     lastCommand match {
