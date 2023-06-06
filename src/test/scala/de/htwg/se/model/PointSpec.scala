@@ -10,7 +10,7 @@ class PointSpec extends AnyWordSpec {
       BlackPoint.toString should be("B")
       GreenPoint.toString should be("G")
       RedPoint.toString should be("R")
-      EmptyPoint.toString should be("X")
+      EmptyPoint.toString should be(" ")
     }
   }
 }
