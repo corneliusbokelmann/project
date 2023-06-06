@@ -3,6 +3,8 @@ package de.htwg.se.model
 case class FeedbackField(guesslength: Int) {
   private var feedbackMatrix: Matrix[Feedback] = new Matrix(guesslength, guesslength, Feedback.Nothing)
 
+  def getFeedbackMatrix: Matrix[Feedback] = feedbackMatrix
+
   def updateFeedback(field: Field, x: Int, y: Int): Unit = {
     val updatedMatrix = feedbackMatrix.replaceCell(y, x, calculateFeedback(field, x, y))
     feedbackMatrix = updatedMatrix
