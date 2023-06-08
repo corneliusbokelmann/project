@@ -1,46 +1,49 @@
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] IncrementalCompile -----------[0m
 [0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
-[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 46 products, 14 sources, 1 libraries[0m
+[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 46 products, 14 sources, 2 libraries[0m
 [0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/src/main/scala/de/htwg/se/model/Matrix.scala, ${BASE}/src/main/scala/de/htwg/se/util/Observer.scala, ${BASE}/src/main/scala/de/htwg/se/model/Point.scala, ${BASE}/src/main/scala/de/htwg/se/model/Field.scala, ${BASE}/src/main/scala/de/htwg/se/controler/Receiver.scala, ${BASE}/src/main/scala/de/htwg/se/controler/Command.scala, ${BASE}/src/main/scala/de/htwg/se/aview/TUI.scala, ${BASE}/src/main/scala/de/htwg/se/controler/Controller.scala, ${BASE}/src/main/scala/de/htwg/se/aview/InputStrategies.scala, ${BASE}/src/main/scala/de/htwg/se/Main.scala, ${BASE}/src/main/scala/de/htwg/se/controler/AddCommand.scala, ${BASE}/src/main/scala/de/htwg/se/model/FeedbackField.scala, ${BASE}/src/main/scala/de/htwg/se/controler/RemoveCommand.scala, ${BASE}/src/main/scala/de/htwg/se/model/PointFactory.scala)[0m
-[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/de/htwg/se/model/FeedbackField.scala), unmodified = ...),Set(),Set(),API Changes: Set())[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidating '${BASE}/target/scala-3.2.2/classes/de/htwg/se/util/Observer.class' because could not find class de.htwg.se.util.Observer$ on the classpath.[0m
+[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/de/htwg/se/controler/Controller.scala), unmodified = ...),Set(),Set(${BASE}/target/scala-3.2.2/classes/de/htwg/se/util/Observer.class),API Changes: Set())[0m
 [0m[[0m[0mdebug[0m] [0m[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial source changes:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	removed: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	added: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/src/main/scala/de/htwg/se/model/FeedbackField.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/src/main/scala/de/htwg/se/controler/Controller.scala)[0m
 [0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(de.htwg.se.model.Feedback$.PositionCorrect, de.htwg.se.model.FeedbackField$package, de.htwg.se.model.FeedbackField$package$.FeedbackMatrixOps, de.htwg.se.model.Feedback$.Nothing, de.htwg.se.model.FeedbackField, de.htwg.se.model.Feedback$.ColorCorrect, de.htwg.se.model.Feedback)[0m
+[0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set(${BASE}/target/scala-3.2.2/classes/de/htwg/se/util/Observer.class)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(de.htwg.se.controler.GameState, de.htwg.se.controler.GameOverState, de.htwg.se.controler.PlayState, de.htwg.se.controler.Controller)[0m
 [0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	product: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set(${BASE}/src/main/scala/de/htwg/se/controler/Controller.scala)[0m
 [0m[[0m[0mdebug[0m] [0m[0m	external source: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(de.htwg.se.model.Feedback$.PositionCorrect, de.htwg.se.model.FeedbackField$package, de.htwg.se.model.FeedbackField$package$.FeedbackMatrixOps, de.htwg.se.model.Feedback$.Nothing, de.htwg.se.model.FeedbackField, de.htwg.se.model.Feedback$.ColorCorrect, de.htwg.se.model.Feedback)[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/src/main/scala/de/htwg/se/model/FeedbackField.scala)[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: de.htwg.se.model.Feedback$.PositionCorrect, de.htwg.se.model.FeedbackField$package, de.htwg.se.model.FeedbackField$package$.FeedbackMatrixOps, de.htwg.se.model.Feedback$.Nothing, de.htwg.se.model.FeedbackField, de.htwg.se.model.Feedback$.ColorCorrect, de.htwg.se.model.Feedback[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(de.htwg.se.controler.GameState, de.htwg.se.controler.GameOverState, de.htwg.se.controler.PlayState, de.htwg.se.controler.Controller)[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/src/main/scala/de/htwg/se/controler/Controller.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: de.htwg.se.controler.GameState, de.htwg.se.controler.GameOverState, de.htwg.se.controler.PlayState, de.htwg.se.controler.Controller[0m
+[0m[[0m[0mdebug[0m] [0m[0mIncluding de.htwg.se.controler.GameOverState by de.htwg.se.controler.GameState[0m
+[0m[[0m[0mdebug[0m] [0m[0mIncluding de.htwg.se.controler.PlayState by de.htwg.se.controler.GameState[0m
 [0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to D:\Charly\HTWG\Sem8\SE\project\target\scala-3.2.2\classes ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mReturning already retrieved and compiled bridge: C:\Users\Sarah\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-sbt-bridge\3.2.2\scala3-sbt-bridge-3.2.2.jar.[0m
-[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 2c0f7b43 for Scala Compiler version 3.2.2[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to D:\Daniel Paustian\HTWG\AIN_3.Semester\Software Engineering\project\target\scala-3.2.2\classes ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mReturning already retrieved and compiled bridge: C:\Users\paust\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-sbt-bridge\3.2.2\scala3-sbt-bridge-3.2.2.jar.[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 7d556689 for Scala Compiler version 3.2.2[0m
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] The Scala compiler is invoked with:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	-coverage-out:D:\Charly\HTWG\Sem8\SE\project\target\scala-3.2.2/scoverage-data[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-coverage-out:D:\Daniel Paustian\HTWG\AIN_3.Semester\Software Engineering\project\target\scala-3.2.2/scoverage-data[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-bootclasspath[0m
-[0m[[0m[0mdebug[0m] [0m[0m	C:\Program Files\OpenJDK\jdk-8.0.262.10-hotspot\jre\lib\resources.jar;C:\Program Files\OpenJDK\jdk-8.0.262.10-hotspot\jre\lib\rt.jar;C:\Program Files\OpenJDK\jdk-8.0.262.10-hotspot\jre\lib\sunrsasign.jar;C:\Program Files\OpenJDK\jdk-8.0.262.10-hotspot\jre\lib\jsse.jar;C:\Program Files\OpenJDK\jdk-8.0.262.10-hotspot\jre\lib\jce.jar;C:\Program Files\OpenJDK\jdk-8.0.262.10-hotspot\jre\lib\charsets.jar;C:\Program Files\OpenJDK\jdk-8.0.262.10-hotspot\jre\lib\jfr.jar;C:\Program Files\OpenJDK\jdk-8.0.262.10-hotspot\jre\classes;C:\Users\Sarah\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-library_3\3.2.2\scala3-library_3-3.2.2.jar;C:\Users\Sarah\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.10\scala-library-2.13.10.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0m	C:\Users\paust\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-library_3\3.2.2\scala3-library_3-3.2.2.jar;C:\Users\paust\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.10\scala-library-2.13.10.jar[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-classpath[0m
-[0m[[0m[0mdebug[0m] [0m[0m	D:\Charly\HTWG\Sem8\SE\project\target\scala-3.2.2\classes;C:\Users\Sarah\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scalactic\scalactic_3\3.2.14\scalactic_3-3.2.14.jar[0m
-[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 4.7825133 s[0m
+[0m[[0m[0mdebug[0m] [0m[0m	D:\Daniel Paustian\HTWG\AIN_3.Semester\Software Engineering\project\target\scala-3.2.2\classes;C:\Users\paust\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scalactic\scalactic_3\3.2.14\scalactic_3-3.2.14.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 6.5381682 s[0m
 [0m[[0m[0mdebug[0m] [0m[0mdone compiling[0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from de.htwg.se.model.FeedbackField...[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: de.htwg.se.model.FeedbackField[0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(de.htwg.se.model.FeedbackField)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from de.htwg.se.controler.Controller...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: de.htwg.se.controler.Controller[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(de.htwg.se.controler.Controller)[0m
 [0m[[0m[0mdebug[0m] [0m[0mNone of the modified names appears in source file of de.htwg.se.aview.TUI. This dependency is not being considered for invalidation.[0m
-[0m[[0m[0mdebug[0m] [0m[0mNone of the modified names appears in source file of de.htwg.se.controler.PlayState. This dependency is not being considered for invalidation.[0m
-[0m[[0m[0mdebug[0m] [0m[0mNone of the modified names appears in source file of de.htwg.se.controler.Controller. This dependency is not being considered for invalidation.[0m
+[0m[[0m[0mdebug[0m] [0m[0mNone of the modified names appears in source file of de.htwg.se.aview.InputStrategy. This dependency is not being considered for invalidation.[0m
 [0m[[0m[0mdebug[0m] [0m[0mNone of the modified names appears in source file of de.htwg.se.Mastermind. This dependency is not being considered for invalidation.[0m
-[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(de.htwg.se.model.FeedbackField,ModifiedNames(changes = UsedName(getFeedbackMatrix,[Default]))) invalidates 1 classes due to The de.htwg.se.model.FeedbackField has the following regular definitions changed:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	UsedName(getFeedbackMatrix,[Default]).[0m
-[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(de.htwg.se.model.FeedbackField)[0m
+[0m[[0m[0mdebug[0m] [0m[0mNone of the modified names appears in source file of de.htwg.se.aview.StandardInput. This dependency is not being considered for invalidation.[0m
+[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(de.htwg.se.controler.Controller,ModifiedNames(changes = UsedName(getGameState,[Default]))) invalidates 1 classes due to The de.htwg.se.controler.Controller has the following regular definitions changed:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	UsedName(getGameState,[Default]).[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(de.htwg.se.controler.Controller)[0m
 [0m[[0m[0mdebug[0m] [0m[0m  > [0m
 [0m[[0m[0mdebug[0m] [0m[0m  > [0m
 [0m[[0m[0mdebug[0m] [0m[0m        [0m
