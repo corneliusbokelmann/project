@@ -12,6 +12,10 @@ class FieldSpec extends AnyWordSpec {
                     emptyField.matrix.cell(i, j) should be(Some(PointFactory.createPoint(" ")))
                 }
             }
+            val stringRep = ("  " * 4 + "\n") * 6
+            "have a String representation" in {
+                emptyField.toString should be(stringRep)
+            }
         }
         "filled with points" should {
             val filledField = new Field(4, 6, PointFactory.createPoint("R"))
@@ -19,6 +23,10 @@ class FieldSpec extends AnyWordSpec {
                 for(i <- 0 until 6; j <- 0 until 4) {
                     filledField.matrix.cell(i, j) should be(Some(PointFactory.createPoint("R")))
                 }
+            }
+            val stringRep = ("R " * 4  + "\n") * 6
+            "have a String representation" in {
+                filledField.toString should be(stringRep)
             }
             "allow to put a point and return a new field" in {
                 val point = PointFactory.createPoint("R")
