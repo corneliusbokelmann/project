@@ -83,6 +83,8 @@ case class Controller(var field: Field, var feedbackField: FeedbackField) extend
 
   def getReceiver: Receiver = receiver
 
+  def getGameState: GameState = gameState
+
   def addToCommandHistory(command: Command): Unit = {
     commandHistory.push(command)
   }
