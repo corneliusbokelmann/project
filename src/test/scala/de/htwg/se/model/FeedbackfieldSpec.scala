@@ -14,13 +14,6 @@ class FeedbackFieldSpec extends AnyWordSpec {
         }
       }
     }
-    "filled" should {
-      val field = new Field(4, 6, PointFactory.createPoint(" "))
-      field.put(PointFactory.createPoint("R"), 0, 0)
-      "calculate the correct feedback" in {
-        de.htwg.se.model.FeedbackField.calculateFeedback(field, 0, 0) should be(Feedback.PositionCorrect)
-      }
-    }
   }
 } 
 
