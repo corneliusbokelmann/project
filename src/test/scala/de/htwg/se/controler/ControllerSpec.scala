@@ -15,6 +15,15 @@ class ControllerSpec extends AnyWordSpec {
                 field should be(emptyField)
             }
         }
+        "set a gamestate" should {
+            val emptyField = new de.htwg.se.model.Field(4, 6, de.htwg.se.model.PointFactory.createPoint(" "))
+            val controller = Controller(emptyField, null)
+            val gameState = new PlayState()
+            controller.setGameState(gameState)
+            "have the given gamestate" in {
+                controller.getGameState should be(gameState)
+            }
+        }
     }
 }
 
