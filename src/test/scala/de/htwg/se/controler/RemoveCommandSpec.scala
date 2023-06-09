@@ -16,6 +16,7 @@ class RemoveCommandSpec extends AnyWordSpec {
             "execute and undo" in {
                 removeCommand.execute() should be(Try(receiver.remove(0, 0)).map(_ => ()))
                 removeCommand.undo() should be(Success(()))
+                removeCommand.removedPoint should be(Some(PointFactory.createPoint("R")))
             }
         }
         "empty" should{
