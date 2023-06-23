@@ -1,35 +1,11 @@
 [0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = D:\Daniel Paustian\HTWG\AIN_3.Semester\Software Engineering\project\target\scala-3.2.2\classes.bak[0m
 [0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameOverState.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	PlayState.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameState.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameOverState.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	PlayState.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameState.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GUI.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GUI.tasty[0m
 [0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameOverState.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	PlayState.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameState.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameOverState.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	PlayState.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameState.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GUI.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GUI.tasty[0m
 [0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameOverState.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	PlayState.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameState.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameOverState.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	PlayState.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameState.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Controller.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GUI.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GUI.tasty[0m
 [0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: D:\Daniel Paustian\HTWG\AIN_3.Semester\Software Engineering\project\target\scala-3.2.2\classes.bak[0m
