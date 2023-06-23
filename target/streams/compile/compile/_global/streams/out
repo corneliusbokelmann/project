@@ -1,52 +1,141 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:19:68 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m19 |[0m        action = Action([31m" "[0m) { controller.makeMove(x, y, controller.currentColor) }[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                         ^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m   value currentColor is not a member of de.htwg.se.controler.Controller[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:19:51 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m19 |[0m        action = Action([31m" "[0m) { controller.makeMove(x, y, controller.currentColor) }[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                   ^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                        Found:    (x : Int)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                        Required: de.htwg.se.model.Point[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\Main.scala:13:16 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m13 |[0m    [33mval[0m [36mfield[0m = FieldInterface(MatrixInterface(Vector.fill([31m10[0m, [31m4[0m)(Some(PointFactoryInterface.createPoint([31m" "[0m)))))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                ^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                Not found: FieldInterface[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:27:40 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m27 |[0m      action = Action([31m"W"[0m) { controller.currentColor = PointFactory.createPoint([31m"W"[0m) }[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                             ^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m   value currentColor is not a member of de.htwg.se.controler.Controller[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:27:55 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m27 |[0m      action = Action([31m"W"[0m) { controller.currentColor = PointFactory.createPoint([31m"W"[0m) }[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                       ^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                 Not found: PointFactory[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\Main.scala:13:31 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m13 |[0m    [33mval[0m [36mfield[0m = FieldInterface(MatrixInterface(Vector.fill([31m10[0m, [31m4[0m)(Some(PointFactoryInterface.createPoint([31m" "[0m)))))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                               ^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                               Not found: MatrixInterface[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:30:40 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m30 |[0m      action = Action([31m"B"[0m) { controller.currentColor = PointFactory.createPoint([31m"B"[0m) }[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                             ^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m   value currentColor is not a member of de.htwg.se.controler.Controller[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:30:55 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m30 |[0m      action = Action([31m"B"[0m) { controller.currentColor = PointFactory.createPoint([31m"B"[0m) }[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                       ^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                 Not found: PointFactory[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\Main.scala:13:71 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m13 |[0m    [33mval[0m [36mfield[0m = FieldInterface(MatrixInterface(Vector.fill([31m10[0m, [31m4[0m)(Some(PointFactoryInterface.createPoint([31m" "[0m)))))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                       ^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                        Not found: PointFactoryInterface[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:33:40 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m      action = Action([31m"G"[0m) { controller.currentColor = PointFactory.createPoint([31m"G"[0m) }[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                             ^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m   value currentColor is not a member of de.htwg.se.controler.Controller[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:33:55 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m      action = Action([31m"G"[0m) { controller.currentColor = PointFactory.createPoint([31m"G"[0m) }[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                       ^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                 Not found: PointFactory[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\Main.scala:14:24 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m14 |[0m    [33mval[0m [36mfeedbackField[0m = FeedbackFieldInterface(guesslength = [31m10[0m)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                        ^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                        Not found: FeedbackFieldInterface[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:36:40 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m      action = Action([31m"R"[0m) { controller.currentColor = PointFactory.createPoint([31m"R"[0m) }[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                             ^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m   value currentColor is not a member of de.htwg.se.controler.Controller[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:36:55 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m      action = Action([31m"R"[0m) { controller.currentColor = PointFactory.createPoint([31m"R"[0m) }[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                       ^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                 Not found: PointFactory[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\Main.scala:15:21 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m15 |[0m    [33mval[0m [36mcontroller[0m = ControllerInterface(field, feedbackField)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                     ^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                     Not found: ControllerInterface[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m10 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:19:48 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m19 |[0m  [33mval[0m [36mgameBoardPanel[0m = [33mnew[0m [35mGridPanel[0m(controller.field.matrix.guesslength, controller.field.matrix.pointslength) {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                     ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue field is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:19:85 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m19 |[0m  [33mval[0m [36mgameBoardPanel[0m = [33mnew[0m [35mGridPanel[0m(controller.field.matrix.guesslength, controller.field.matrix.pointslength) {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                          ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue field is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:21:30 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m21 |[0m      x <- [31m0[0m until controller.field.matrix.guesslength[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                   ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue field is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:22:30 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m22 |[0m      y <- [31m0[0m until controller.field.matrix.pointslength[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                   ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue field is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:25:26 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m25 |[0m        text = controller.field.matrix.cell(x, y).toString[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue field is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:28:38 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m28 |[0m        background = getColorForPoint(ControllerInterface.FieldInterface.matrix.cell(x, y))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                      ^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                      Not found: ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:39:41 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m39 |[0m  [33mval[0m [36mfeedbackFieldPanel[0m = [33mnew[0m [35mGridPanel[0m(ControllerInterface.FeedbackFieldInterface.guesslength, [31m1[0m) {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                         ^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                         Not found: ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:41:19 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m41 |[0m      x <- [31m0[0m until ControllerInterface.FeedbackFieldInterface.guesslength[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                   ^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                   Not found: ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:44:15 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m44 |[0m        text = ControllerInterface.FeedbackFieldInterface.getFeedbackMatrix.cell(x, [31m0[0m).toString[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m               Not found: ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:68:30 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m68 |[0m      x <- [31m0[0m until controller.field.matrix.guesslength[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                   ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue field is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:69:30 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m69 |[0m      y <- [31m0[0m until controller.field.matrix.pointslength[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                   ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue field is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:71:57 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m71 |[0m      [33mval[0m [36mlabel[0m = gameBoardPanel.contents(y * controller.field.matrix.guesslength + x).asInstanceOf[[35mLabel[0m][0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                              ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue field is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:72:30 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m72 |[0m      label.text = controller.field.matrix.cell(x, y).toString[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                   ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue field is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:73:53 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m73 |[0m      label.background = getColorForPoint(controller.field.matrix.cell(x, y))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                          ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue field is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:78:30 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m78 |[0m      x <- [31m0[0m until controller.feedbackField.guesslength[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                   ^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue feedbackField is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\GUI.scala:81:30 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m81 |[0m      label.text = controller.feedbackField.getFeedbackMatrix.cell(x, [31m0[0m).toString[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                   ^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue feedbackField is not a member of de.htwg.se.controler.controlercomponent.ControllerInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\InputStrategies.scala:15:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m15 |[0m        [33mval[0m [36mpoint[0m = PointFactoryInterface.createPoint(color)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                    ^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                    Not found: PointFactoryInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\aview\TUI.scala:64:30 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m64 |[0m  [33mdef[0m [36mcreateAddCommand[0m([36mpoint[0m: [35mPoint[0m, [36mx[0m: [35mInt[0m, [36my[0m: [35mInt[0m): [35mUnit[0m = {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                              ^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                              Not found: type Point[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\controler\controlercomponent\controlerImpl\Controller.scala:69:32 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m69 |[0m              field = field.put(PointFactoryInterface.createPoint([31m" "[0m), x, y)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                ^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                Not found: PointFactoryInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\controler\controlercomponent\controlerImpl\Receiver.scala:12:22 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m12 |[0m    [33mval[0m [36mpoint[0m = field.matrix.cell(x, y)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                ^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue matrix is not a member of de.htwg.se.model.modelcomponent.FieldInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\controler\controlercomponent\controlerImpl\Receiver.scala:13:22 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m13 |[0m    field = field.put(PointFactoryInterface.createPoint([31m" "[0m), x, y)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                      ^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                      Not found: PointFactoryInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\controler\controlercomponent\controlerImpl\Receiver.scala:18:10 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m18 |[0m    field.matrix.cell(x, y) [33mmatch[0m {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m    ^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue matrix is not a member of de.htwg.se.model.modelcomponent.FieldInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\controler\controlercomponent\controlerImpl\Receiver.scala:19:22 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m19 |[0m      [33mcase[0m Some(p) [33mif[0m p == PointFactory.createPoint([31m" "[0m) => None[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                      Not found: p[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m28 errors found[0m

@@ -1,7 +1,6 @@
 package de.htwg.se.aview
 
 import scala.swing._
-import de.htwg.se.controler.Controller
 import de.htwg.se.util.Observer
 import de.htwg.se.model.modelcomponent.modelImpl.Point
 import java.awt.Color
@@ -10,9 +9,9 @@ import de.htwg.se.model.modelcomponent.modelImpl.WhitePoint
 import de.htwg.se.model.modelcomponent.modelImpl.BlackPoint
 import de.htwg.se.model.modelcomponent.modelImpl.GreenPoint
 import de.htwg.se.model.modelcomponent.modelImpl.RedPoint
-import de.htwg.se.controler.controlercomponent.controlerImpl.Controller
+import de.htwg.se.controler.controlercomponent.ControllerInterface
 
-class GUI(controller: Controller) extends MainFrame with Observer {
+class GUI(controller: ControllerInterface) extends MainFrame with Observer {
   title = "Mastermind"
   preferredSize = new Dimension(800, 600)
 
@@ -26,7 +25,7 @@ class GUI(controller: Controller) extends MainFrame with Observer {
         text = controller.field.matrix.cell(x, y).toString
         font = new Font("Arial", 1, 24)
         opaque = true
-        background = getColorForPoint(controller.field.matrix.cell(x, y))
+        background = getColorForPoint(ControllerInterface.FieldInterface.matrix.cell(x, y))
         border = BorderFactory.createLineBorder(Color.black)
         preferredSize = new Dimension(60, 60)
         horizontalAlignment = Alignment.Center
@@ -37,12 +36,12 @@ class GUI(controller: Controller) extends MainFrame with Observer {
   }
 
   // Create a panel for the feedback field
-  val feedbackFieldPanel = new GridPanel(controller.feedbackField.guesslength, 1) {
+  val feedbackFieldPanel = new GridPanel(ControllerInterface.FeedbackFieldInterface.guesslength, 1) {
     for {
-      x <- 0 until controller.feedbackField.guesslength
+      x <- 0 until ControllerInterface.FeedbackFieldInterface.guesslength
     } {
       val label = new Label {
-        text = controller.feedbackField.getFeedbackMatrix.cell(x, 0).toString
+        text = ControllerInterface.FeedbackFieldInterface.getFeedbackMatrix.cell(x, 0).toString
         font = new Font("Arial", 1, 24)
         opaque = true
         background = Color.lightGray
