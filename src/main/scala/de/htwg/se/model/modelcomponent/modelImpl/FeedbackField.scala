@@ -1,10 +1,11 @@
-package de.htwg.se.model.modelcomponent.modelImpl
+package de.htwg.se.model.modelcomponent
+package modelImpl
 
 import de.htwg.se.model.modelcomponent.modelImpl.Field
 import de.htwg.se.model.modelcomponent.modelImpl.Matrix
 
 
-case class FeedbackField(guesslength: Int) {
+case class FeedbackField(guesslength: Int) extends FeedbackFieldInterface {
   private var feedbackMatrix: Matrix[Feedback] = new Matrix(guesslength, guesslength, Feedback.Nothing)
 
   def getFeedbackMatrix: Matrix[Feedback] = feedbackMatrix

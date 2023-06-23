@@ -1,10 +1,11 @@
-package de.htwg.se.model.modelcomponent.modelImpl
+package de.htwg.se.model.modelcomponent
+package modelImpl
 
 import de.htwg.se.model.modelcomponent.modelImpl.Matrix
 import de.htwg.se.model.modelcomponent.modelImpl.Point
 
 
-case class Field(matrix: Matrix[Option[Point]]) {
+case class Field(matrix: Matrix[Option[Point]]) extends FieldInterface {
   def this(pointslength: Int, guesslength: Int, filling: Point) =
     this(new Matrix(pointslength, guesslength, Some(filling)))
 
@@ -12,6 +13,12 @@ case class Field(matrix: Matrix[Option[Point]]) {
     val updatedMatrix = matrix.replaceCell(x, y, Some(point))
     copy(matrix = updatedMatrix)
   }
+
+  def guesslength: Int = matrix.guesslength
+
+  def pointslength: Int = matrix.pointslength
+
+  def cell(row: Int, col: Int): Option[Point] = matrix.cell(row, col)
 
   override def toString: String = {
     val sb = new StringBuilder

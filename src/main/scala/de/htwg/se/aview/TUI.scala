@@ -1,7 +1,7 @@
 package de.htwg.se.aview
 
 import de.htwg.se.controler.controlercomponent.ControllerInterface
-import de.htwg.se.model.modelcomponent.FieldInterface
+import de.htwg.se.model.modelcomponent.{FieldInterface, Point}
 import de.htwg.se.util.Observer
 
 import scala.io.StdIn.readLine

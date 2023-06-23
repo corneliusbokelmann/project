@@ -1,6 +1,7 @@
-package de.htwg.se.controler.controlercomponent.controlerImpl
+package de.htwg.se.controler.controlercomponent
+package controlerImpl
 
-import de.htwg.se.model.modelcomponent.{FieldInterface, Point, PointFactoryInterface, FeedbackFieldInterface}
+import de.htwg.se.model.modelcomponent.{FieldInterface, Point, PointFactoryInterface, FeedbackFieldInterface, Feedback}
 import de.htwg.se.util.{Observable, Observer}
 import de.htwg.se.aview.GUI
 
@@ -42,10 +43,11 @@ class GameOverState extends GameState {
   }
 }
 
-case class Controller(var field: FieldInterface, var feedbackField: FeedbackFieldInterface, var gui: Option[GUI] = None) extends Observable {
+case class Controller(var field: FieldInterface, var feedbackField: FeedbackFieldInterface, var gui: Option[GUI] = None) extends ControllerInterface, Observable {
   private var gameState: GameState = new PlayState()
   private val receiver: Receiver = new Receiver(field)
   private val commandHistory: Stack[Command] = Stack()
+  private val pointFactory = new PointFactoryInterface
 
   def setGui(newGui: GUI): Unit = {
     gui = Some(newGui)
@@ -66,7 +68,7 @@ case class Controller(var field: FieldInterface, var feedbackField: FeedbackFiel
         case Success(_) =>
           command match {
             case AddCommand(_, point, x, y) =>
-              field = field.put(PointFactoryInterface.createPoint(" "), x, y)
+              field = field.put(pointFactory.createPoint(" "), x, y)
               feedbackField.updateFeedback(field, x, y)
             case RemoveCommand(_, x, y) =>
               val removedPoint = command.asInstanceOf[RemoveCommand].removedPoint.getOrElse(throw new IllegalStateException("Error: No point to add during undo."))
@@ -93,6 +95,14 @@ case class Controller(var field: FieldInterface, var feedbackField: FeedbackFiel
   def getReceiver: Receiver = receiver
 
   def getGameState: GameState = gameState
+
+  def getGuesslength: Int = field.guesslength
+
+  def getPointslength: Int = field.pointslength
+
+  def pointCell(row: Int, col: Int): Option[Point] = field.cell(row, col)
+
+  def feedbackCell(row: Int, col: Int): Feedback = feedbackField.getFeedbackMatrix.cell(row, col)
 
   def addToCommandHistory(command: Command): Unit = {
     commandHistory.push(command)

@@ -11,6 +11,9 @@ sealed trait Feedback
 
 trait FieldInterface {
   def put(point: Point, x: Int, y: Int): FieldInterface
+  def guesslength: Int
+  def pointslength: Int
+  def cell(row: Int, col: Int): Option[Point]
   override def toString: String
 }
 
