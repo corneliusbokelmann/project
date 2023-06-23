@@ -6,22 +6,38 @@ import de.htwg.se.util.Observer
 
 import scala.io.StdIn.readLine
 
+// Define event trait and case classes
+trait TuiEvent
+case class InputReceived(input: String) extends TuiEvent
+case object UndoRequested extends TuiEvent
+case object QuitRequested extends TuiEvent
+
 trait InputStrategy {
   def handleInput(input: String, controller: Controller): Unit
 }
 
 class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer {
-  private var lastCommand: Option[Command] = None
-
   controller.add(this)
 
   def run(): Unit = {
     println(controller.toString)
-    var input: String = ""
-    while (input != "q") {
-      getInputAndPrintLoop()
-      input = readLine()
-      inputStrategy.handleInput(input, controller)
+    var event: TuiEvent = InputReceived(readLine())
+    while (event != QuitRequested) {
+      event match {
+        case InputReceived(input) =>
+          if (input.toLowerCase == "u") {
+            event = UndoRequested
+          } else if (input.toLowerCase == "q") {
+            event = QuitRequested
+          } else {
+            inputStrategy.handleInput(input, controller)
+            event = InputReceived(readLine())
+          }
+        case UndoRequested =>
+          controller.undoLastMove()
+          event = InputReceived(readLine())
+        case QuitRequested => // Do nothing, loop will exit
+      }
     }
   }
 
@@ -30,36 +46,10 @@ class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer
     println(controller.feedbackField)
   }
 
-  private def getInputAndPrintLoop(): Unit = {
-    println("Enter your move (<Color><x><y>, e.g., R02, q to quit, u to undo):")
-    val input = readLine()
-    if (input.toLowerCase() == "u") {
-      controller.undoLastMove() // changed from undoLastCommand()
-    } else {
-      inputStrategy.handleInput(input, controller)
-    }
-  }
-
-
-  private def undoLastCommand(): Unit = {
-    lastCommand match {
-      case Some(command) =>
-        command.undo() match {
-          case util.Success(_) =>
-            lastCommand = None
-            controller.notifyObservers()
-          case util.Failure(exception) =>
-            println(s"Undo failed: ${exception.getMessage}")
-        }
-      case None =>
-        println("No command to undo.")
-    }
-  }
-
+  // Assuming you want to keep these functions
   def executeCommand(command: Command): Unit = {
     command.execute() match {
       case util.Success(_) =>
-        lastCommand = Some(command)
         controller.notifyObservers()
       case util.Failure(exception) =>
         println(s"Command execution failed: ${exception.getMessage}")

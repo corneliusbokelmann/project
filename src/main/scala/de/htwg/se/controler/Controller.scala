@@ -2,6 +2,7 @@ package de.htwg.se.controler
 
 import de.htwg.se.model.{Field, FeedbackField, Point, PointFactory}
 import de.htwg.se.util.{Observable, Observer}
+import de.htwg.se.aview.GUI
 
 import scala.collection.mutable.Stack
 import scala.util.{Failure, Success, Try}
@@ -36,15 +37,20 @@ class GameOverState extends GameState {
   }
 }
 
-case class Controller(var field: Field, var feedbackField: FeedbackField) extends Observable {
+case class Controller(var field: Field, var feedbackField: FeedbackField, var gui: Option[GUI] = None) extends Observable {
   private var gameState: GameState = new PlayState()
   private val receiver: Receiver = new Receiver(field)
   private val commandHistory: Stack[Command] = Stack()
 
+  def setGui(newGui: GUI): Unit = {
+    gui = Some(newGui)
+  }
+
   def makeMove(point: Point, x: Int, y: Int): Unit = {
     gameState.makeMove(this, point, x, y)
     field = receiver.field // Update the field with the new field after executing the command
-  }
+    notifyObservers()
+    }
 
 
   def undoLastMove(): Unit = {
@@ -62,6 +68,7 @@ case class Controller(var field: Field, var feedbackField: FeedbackField) extend
               field = field.put(removedPoint, x, y)
               feedbackField.updateFeedback(field, x, y)
           }
+          gui.foreach(_.update()) // update GUI after undoing the last move
           notifyObservers()
         case Failure(ex) =>
           println(s"Undo failed: ${ex.getMessage}")
@@ -71,12 +78,9 @@ case class Controller(var field: Field, var feedbackField: FeedbackField) extend
     }
   }
 
-
-
-
-
   def setGameState(gameState: GameState): Unit = {
     this.gameState = gameState
+    notifyObservers()
   }
 
   override def toString: String = field.toString

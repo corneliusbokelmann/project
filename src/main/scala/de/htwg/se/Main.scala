@@ -1,8 +1,7 @@
 package de.htwg.se
 
 import de.htwg.se.model.{Field, FeedbackField, Matrix, Point, PointFactory}
-/* import de.htwg.se.util.Observer */
-import de.htwg.se.aview.{TUI, StandardInput}
+import de.htwg.se.aview.{TUI, StandardInput, GUI}
 import de.htwg.se.controler.{Controller, AddCommand, RemoveCommand}
 
 object Mastermind {
@@ -10,8 +9,24 @@ object Mastermind {
     println("Welcome to Mastermind!")
     val field = Field(Matrix(Vector.fill(10, 4)(Some(PointFactory.createPoint(" ")))))
     val feedbackField = FeedbackField(guesslength = 10)
-    val controller = Controller(field, feedbackField)
+    val controller = Controller(field, feedbackField) // Gui not passed
+
     val tui = new TUI(controller, new StandardInput())
-    tui.run()
+
+    val threadTui = new Thread {
+      override def run(): Unit = {
+        tui.run()
+      }
+    }
+
+    val threadGui = new Thread {
+      override def run(): Unit = {
+        val gui = new GUI(controller)
+        gui.visible = true
+      }
+    }
+
+    threadTui.start()
+    threadGui.start()
   }
 }
