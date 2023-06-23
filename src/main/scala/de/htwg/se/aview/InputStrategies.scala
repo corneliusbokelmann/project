@@ -1,8 +1,10 @@
 package de.htwg.se.aview
 
-import de.htwg.se.controler.Controller
+import de.htwg.se.controler.controlercomponent.controlerImpl.Controller
 import de.htwg.se.model.Point
-import de.htwg.se.model.PointFactory
+import de.htwg.se.model.modelcomponent.modelImpl.PointFactory
+import de.htwg.se.controler.controlercomponent.controlerImpl.Controller
+
 
 class StandardInput extends InputStrategy {
   override def handleInput(input: String, controller: Controller): Unit = {

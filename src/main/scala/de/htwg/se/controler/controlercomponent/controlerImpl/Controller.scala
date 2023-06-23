@@ -1,11 +1,16 @@
-package de.htwg.se.controler
+package de.htwg.se.controler.controlercomponent.controlerImpl
 
-import de.htwg.se.model.{Field, FeedbackField, Point, PointFactory}
+import de.htwg.se.model.modelcomponent.{FieldInterface, Point, PointFactoryInterface, FeedbackFieldInterface}
 import de.htwg.se.util.{Observable, Observer}
 import de.htwg.se.aview.GUI
 
 import scala.collection.mutable.Stack
 import scala.util.{Failure, Success, Try}
+import de.htwg.se.controler.controlercomponent.controlerImpl.AddCommand
+import de.htwg.se.controler.controlercomponent.controlerImpl.Command
+import de.htwg.se.controler.controlercomponent.controlerImpl.Receiver
+import de.htwg.se.controler.controlercomponent.controlerImpl.RemoveCommand
+
 
 trait GameState {
   def makeMove(controller: Controller, point: Point, x: Int, y: Int): Unit
@@ -37,7 +42,7 @@ class GameOverState extends GameState {
   }
 }
 
-case class Controller(var field: Field, var feedbackField: FeedbackField, var gui: Option[GUI] = None) extends Observable {
+case class Controller(var field: FieldInterface, var feedbackField: FeedbackFieldInterface, var gui: Option[GUI] = None) extends Observable {
   private var gameState: GameState = new PlayState()
   private val receiver: Receiver = new Receiver(field)
   private val commandHistory: Stack[Command] = Stack()
@@ -61,7 +66,7 @@ case class Controller(var field: Field, var feedbackField: FeedbackField, var gu
         case Success(_) =>
           command match {
             case AddCommand(_, point, x, y) =>
-              field = field.put(PointFactory.createPoint(" "), x, y)
+              field = field.put(PointFactoryInterface.createPoint(" "), x, y)
               feedbackField.updateFeedback(field, x, y)
             case RemoveCommand(_, x, y) =>
               val removedPoint = command.asInstanceOf[RemoveCommand].removedPoint.getOrElse(throw new IllegalStateException("Error: No point to add during undo."))

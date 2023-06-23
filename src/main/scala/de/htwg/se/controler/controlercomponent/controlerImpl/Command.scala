@@ -1,4 +1,4 @@
-package de.htwg.se.controler
+package de.htwg.se.controler.controlercomponent.controlerImpl
 
 import scala.util.Try
 

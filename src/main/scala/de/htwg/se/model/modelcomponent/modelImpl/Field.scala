@@ -1,4 +1,8 @@
-package de.htwg.se.model
+package de.htwg.se.model.modelcomponent.modelImpl
+
+import de.htwg.se.model.modelcomponent.modelImpl.Matrix
+import de.htwg.se.model.modelcomponent.modelImpl.Point
+
 
 case class Field(matrix: Matrix[Option[Point]]) {
   def this(pointslength: Int, guesslength: Int, filling: Point) =

@@ -3,13 +3,14 @@ package de.htwg.se.aview
 import scala.swing._
 import de.htwg.se.controler.Controller
 import de.htwg.se.util.Observer
-import de.htwg.se.model.Point
+import de.htwg.se.model.modelcomponent.modelImpl.Point
 import java.awt.Color
 import javax.swing.BorderFactory
-import de.htwg.se.model.WhitePoint
-import de.htwg.se.model.BlackPoint
-import de.htwg.se.model.GreenPoint
-import de.htwg.se.model.RedPoint
+import de.htwg.se.model.modelcomponent.modelImpl.WhitePoint
+import de.htwg.se.model.modelcomponent.modelImpl.BlackPoint
+import de.htwg.se.model.modelcomponent.modelImpl.GreenPoint
+import de.htwg.se.model.modelcomponent.modelImpl.RedPoint
+import de.htwg.se.controler.controlercomponent.controlerImpl.Controller
 
 class GUI(controller: Controller) extends MainFrame with Observer {
   title = "Mastermind"

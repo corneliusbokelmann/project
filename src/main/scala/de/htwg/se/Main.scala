@@ -1,17 +1,18 @@
 package de.htwg.se
 
-import de.htwg.se.model.{Field, FeedbackField, Matrix, Point, PointFactory}
+import de.htwg.se.model.modelcomponent._
 import de.htwg.se.aview.{TUI, StandardInput, GUI}
-import de.htwg.se.controler.{Controller, AddCommand, RemoveCommand}
+import de.htwg.se.controler.controlercomponent._
+
 
 
 object Mastermind {
   def main(args: Array[String]): Unit = {
     println("Welcome to Mastermind!")
 
-    val field = Field(Matrix(Vector.fill(10, 4)(Some(PointFactory.createPoint(" ")))))
-    val feedbackField = FeedbackField(guesslength = 10)
-    val controller = Controller(field, feedbackField)
+    val field = FieldInterface(MatrixInterface(Vector.fill(10, 4)(Some(PointFactoryInterface.createPoint(" ")))))
+    val feedbackField = FeedbackFieldInterface(guesslength = 10)
+    val controller = ControllerInterface(field, feedbackField)
 
     val tui = TUI(controller, new StandardInput())
     val gui = GUI(controller)
