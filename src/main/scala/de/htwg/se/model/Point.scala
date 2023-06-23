@@ -1,4 +1,4 @@
-package de.htwg.se.model.modelcomponent.modelImpl
+package de.htwg.se.model
 
 sealed trait Point
 

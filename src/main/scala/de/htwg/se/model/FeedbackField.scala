@@ -1,8 +1,4 @@
-package de.htwg.se.model.modelcomponent.modelImpl
-
-import de.htwg.se.model.modelcomponent.modelImpl.Field
-import de.htwg.se.model.modelcomponent.modelImpl.Matrix
-
+package de.htwg.se.model
 
 case class FeedbackField(guesslength: Int) {
   private var feedbackMatrix: Matrix[Feedback] = new Matrix(guesslength, guesslength, Feedback.Nothing)

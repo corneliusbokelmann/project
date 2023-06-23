@@ -1,15 +1,10 @@
 package de.htwg.se.aview
 
-import de.htwg.se.controler.controlercomponent.ControllerInterface
-import de.htwg.se.model.modelcomponent.FieldInterface
+import de.htwg.se.controler.{Controller, AddCommand, RemoveCommand, Command}
+import de.htwg.se.model.Point
 import de.htwg.se.util.Observer
 
 import scala.io.StdIn.readLine
-import de.htwg.se.controler.controlercomponent.controlerImpl.AddCommand
-import de.htwg.se.controler.controlercomponent.controlerImpl.Command
-import de.htwg.se.controler.controlercomponent.controlerImpl.Controller
-import de.htwg.se.controler.controlercomponent.controlerImpl.RemoveCommand
-
 
 // Define event trait and case classes
 trait TuiEvent

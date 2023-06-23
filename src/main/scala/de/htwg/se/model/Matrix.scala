@@ -1,4 +1,4 @@
-package de.htwg.se.model.modelcomponent.modelImpl
+package de.htwg.se.model
 
 case class Matrix[T](rows: Vector[Vector[T]]) {
   def this(pointslength: Int, guesslength: Int, filling: T) =

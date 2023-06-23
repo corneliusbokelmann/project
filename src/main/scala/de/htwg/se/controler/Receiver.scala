@@ -1,16 +1,16 @@
-package de.htwg.se.controler.controlercomponent.controlerImpl
+package de.htwg.se.controler
 
-import de.htwg.se.model.modelcomponent.{FieldInterface, Point, PointFactoryInterface}
+import de.htwg.se.model.{Field, Point, PointFactory}
 import scala.util.{Failure, Success, Try}
 
-case class Receiver(var field: FieldInterface) {
+case class Receiver(var field: Field) {
   def add(point: Point, x: Int, y: Int): Unit = {
     field = field.put(point, x, y)
   }
 
   def remove(x: Int, y: Int): Option[Point] = {
     val point = field.matrix.cell(x, y)
-    field = field.put(PointFactoryInterface.createPoint(" "), x, y)
+    field = field.put(PointFactory.createPoint(" "), x, y)
     point
   }
 

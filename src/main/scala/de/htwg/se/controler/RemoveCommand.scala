@@ -1,10 +1,7 @@
-package de.htwg.se.controler.controlercomponent.controlerImpl
+package de.htwg.se.controler
 
 import scala.util.{Failure, Success, Try}
-import de.htwg.se.model.modelcomponent.{FieldInterface, Point, PointFactoryInterface}
-import de.htwg.se.controler.controlercomponent.controlerImpl.Command
-import de.htwg.se.controler.controlercomponent.controlerImpl.Receiver
-
+import de.htwg.se.model.Point
 
 case class RemoveCommand(receiver: Receiver, x: Int, y: Int) extends Command {
   var removedPoint: Option[Point] = None

@@ -1,7 +1,4 @@
-package de.htwg.se.model.modelcomponent.modelImpl
-
-import de.htwg.se.model.modelcomponent.modelImpl.{RedPoint, Point, EmptyPoint, GreenPoint, BlackPoint, WhitePoint}
-
+package de.htwg.se.model
 
 object PointFactory {
   def createPoint(color: String): Point = {
