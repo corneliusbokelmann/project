@@ -75,11 +75,11 @@ case class Controller(var field: FieldInterface, var feedbackField: FeedbackFiel
         case Success(_) =>
           command match {
             case AddCommand(_, point, x, y) =>
-              field = field.put(Point.valueOf(" "), x, y)
+              field = field.put(Point.valueFromSymbol(" "), x, y)
               feedbackField.updateFeedback(field, x, y)
             case RemoveCommand(_, x, y) =>
               val removedPoint = command.asInstanceOf[RemoveCommand].removedPoint.getOrElse(throw new IllegalStateException("Error: No point to add during undo."))
-              field = field.put(removedPoint, x, y)
+              field = field.put(Some(removedPoint), x, y)
               feedbackField.updateFeedback(field, x, y)
           }
           gui.foreach(_.update()) // update GUI after undoing the last move

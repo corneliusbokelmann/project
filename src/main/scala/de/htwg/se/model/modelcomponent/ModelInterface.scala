@@ -4,7 +4,7 @@ import de.htwg.se.model.modelcomponent.modelImpl.{Matrix, Point}
 
 trait FieldInterface {
   def matrix: Matrix[Point]
-  def put(point: Point, x: Int, y: Int): FieldInterface
+  def put(point: Option[Point], x: Int, y: Int): FieldInterface
   def getCell(x: Int, y: Int): Option[Point]
   override def toString: String
 }

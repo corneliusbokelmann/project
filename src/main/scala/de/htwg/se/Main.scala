@@ -11,7 +11,7 @@ object Mastermind {
   def main(args: Array[String]): Unit = {
     println("Welcome to Mastermind!")
 
-    val field = Field(Matrix(Vector.fill(10, 4)(Point.valueOf(" "))))
+    val field = Field(Matrix(Vector.fill(10, 4)(Point.EmptyPoint)))
     val feedbackField = FeedbackField(guesslength = 10)
     val controller = Controller(field, feedbackField)
 
