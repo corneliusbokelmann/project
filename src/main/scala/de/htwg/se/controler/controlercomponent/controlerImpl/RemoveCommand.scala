@@ -1,12 +1,12 @@
 package de.htwg.se.controler.controlercomponent.controlerImpl
 
 import scala.util.{Failure, Success, Try}
-import de.htwg.se.model.modelcomponent.{FieldInterface, Point, PointFactoryInterface}
-import de.htwg.se.controler.controlercomponent.controlerImpl.Command
-import de.htwg.se.controler.controlercomponent.controlerImpl.Receiver
+import de.htwg.se.model.modelcomponent.modelImpl.Point
+import de.htwg.se.controler.controlercomponent.CommandInterface
+import de.htwg.se.controler.controlercomponent.ReceiverInterface
 
 
-case class RemoveCommand(receiver: Receiver, x: Int, y: Int) extends Command {
+case class RemoveCommand(receiver: ReceiverInterface, x: Int, y: Int) extends CommandInterface {
   var removedPoint: Option[Point] = None
 
   override def execute(): Try[Unit] = {

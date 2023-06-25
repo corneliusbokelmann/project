@@ -1,21 +1,8 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: D:\Daniel Paustian\HTWG\AIN_3.Semester\Software Engineering\project\src\main\scala\de\htwg\se\aview\GUI.scala:28:58 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m28 |[0m        background = getColorForPoint(controller.pointCell(x, y))[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mFound:    Option[de.htwg.se.model.modelcomponent.Point][0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: Option[de.htwg.se.model.modelcomponent.[1m[32mmodelImpl[0m[1m[32m.[0mPoint[1m[32m²[0m][0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mwhere:    Point  is a trait in [33mpackage[0m [35mde.htwg.se.model.modelcomponent[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m          Point² is a trait in [33mpackage[0m [35mde.htwg.se.model.modelcomponent.modelImpl[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: D:\Daniel Paustian\HTWG\AIN_3.Semester\Software Engineering\project\src\main\scala\de\htwg\se\aview\GUI.scala:73:62 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m73 |[0m      label.background = getColorForPoint(controller.pointCell(x, y))[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mFound:    Option[de.htwg.se.model.modelcomponent.Point][0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: Option[de.htwg.se.model.modelcomponent.[1m[32mmodelImpl[0m[1m[32m.[0mPoint[1m[32m²[0m][0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mwhere:    Point  is a trait in [33mpackage[0m [35mde.htwg.se.model.modelcomponent[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m          Point² is a trait in [33mpackage[0m [35mde.htwg.se.model.modelcomponent.modelImpl[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\controler\controlercomponent\controlerImpl\Controller.scala:104:105 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m104 |[0m  [33moverride[0m [33mdef[0m feedbackCell(row: Int, col: Int): FeedbackInterface = feedbackField.getFeedbackMatrix.cell(row, col)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m   Found:    [1m[31mOption[0m[1m[31m[[0mde.htwg.se.model.modelcomponent.FeedbackInterface[1m[31m][0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m   Required: de.htwg.se.model.modelcomponent.FeedbackInterface[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

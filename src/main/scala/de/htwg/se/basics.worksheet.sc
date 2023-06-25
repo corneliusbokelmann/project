@@ -1,4 +1,4 @@
-// Define some variables with different data types
+/*// Define some variables with different data types
 val name = "John"
 val age = 30
 val height = 1.8
@@ -77,3 +77,4 @@ field.line(1).point(1).colour
 field.line(1).point(2).colour
 
 field.line(0).point(0).sameColourPoint(field.line(0).point(1))
+*/

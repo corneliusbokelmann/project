@@ -3,12 +3,9 @@ package de.htwg.se.aview
 import scala.swing._
 import de.htwg.se.util.Observer
 import de.htwg.se.model.modelcomponent.modelImpl.Point
+import de.htwg.se.model.modelcomponent.modelImpl.Point.{WhitePoint, BlackPoint, GreenPoint, RedPoint}
 import java.awt.Color
 import javax.swing.BorderFactory
-import de.htwg.se.model.modelcomponent.modelImpl.WhitePoint
-import de.htwg.se.model.modelcomponent.modelImpl.BlackPoint
-import de.htwg.se.model.modelcomponent.modelImpl.GreenPoint
-import de.htwg.se.model.modelcomponent.modelImpl.RedPoint
 import de.htwg.se.controler.controlercomponent.ControllerInterface
 
 class GUI(controller: ControllerInterface) extends MainFrame with Observer {
@@ -25,7 +22,7 @@ class GUI(controller: ControllerInterface) extends MainFrame with Observer {
         text = controller.pointCell(x, y).toString
         font = new Font("Arial", 1, 24)
         opaque = true
-        background = getColorForPoint(controller.pointCell(x, y))
+        background = getColorForPoint(controller.field.matrix.cell(x, y))
         border = BorderFactory.createLineBorder(Color.black)
         preferredSize = new Dimension(60, 60)
         horizontalAlignment = Alignment.Center
@@ -36,12 +33,12 @@ class GUI(controller: ControllerInterface) extends MainFrame with Observer {
   }
 
   // Create a panel for the feedback field
-  val feedbackFieldPanel = new GridPanel(controller.getGuesslength, 1) {
+  val feedbackFieldPanel = new GridPanel(controller.field.matrix.guesslength, 1) {
     for {
-      x <- 0 until controller.getGuesslength
+      x <- 0 until controller.field.matrix.guesslength
     } {
       val label = new Label {
-        text = controller.feedbackCell(x, 0).toString
+        text = controller.feedbackfield.getFeedbackMatrix.cell(x, 0).toString
         font = new Font("Arial", 1, 24)
         opaque = true
         background = Color.lightGray
@@ -75,10 +72,10 @@ class GUI(controller: ControllerInterface) extends MainFrame with Observer {
 
     // Update the feedback field labels
     for {
-      x <- 0 until controller.getGuesslength
+      x <- 0 until controller.field.matrix.guesslength
       label = feedbackFieldPanel.contents(x).asInstanceOf[Label]
     } {
-      label.text = controller.feedbackCell(x, 0).toString
+      label.text = controller.feedbackfield.getFeedbackMatrix.cell(x, 0).toString
     }
   }
 

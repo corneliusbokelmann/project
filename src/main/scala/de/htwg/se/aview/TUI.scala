@@ -1,7 +1,7 @@
 package de.htwg.se.aview
 
 import de.htwg.se.controler.controlercomponent.ControllerInterface
-import de.htwg.se.model.modelcomponent.{FieldInterface, Point}
+import de.htwg.se.model.modelcomponent.modelImpl.Point
 import de.htwg.se.util.Observer
 
 import scala.io.StdIn.readLine
@@ -9,6 +9,7 @@ import de.htwg.se.controler.controlercomponent.controlerImpl.AddCommand
 import de.htwg.se.controler.controlercomponent.controlerImpl.Command
 import de.htwg.se.controler.controlercomponent.controlerImpl.Controller
 import de.htwg.se.controler.controlercomponent.controlerImpl.RemoveCommand
+import de.htwg.se.controler.controlercomponent.CommandInterface
 
 
 // Define event trait and case classes
@@ -18,7 +19,7 @@ case object UndoRequested extends TuiEvent
 case object QuitRequested extends TuiEvent
 
 trait InputStrategy {
-  def handleInput(input: String, controller: Controller): Unit
+  def handleInput(input: String, controller: ControllerInterface): Unit
 }
 
 class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer {
@@ -52,7 +53,7 @@ class TUI(controller: Controller, inputStrategy: InputStrategy) extends Observer
   }
 
   // Assuming you want to keep these functions
-  def executeCommand(command: Command): Unit = {
+  def executeCommand(command: CommandInterface): Unit = {
     command.execute() match {
       case util.Success(_) =>
         controller.notifyObservers()

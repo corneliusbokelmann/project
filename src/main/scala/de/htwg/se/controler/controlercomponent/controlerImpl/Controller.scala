@@ -1,7 +1,10 @@
 package de.htwg.se.controler.controlercomponent
 package controlerImpl
 
-import de.htwg.se.model.modelcomponent.{FieldInterface, Point, PointFactoryInterface, FeedbackFieldInterface, Feedback}
+import de.htwg.se.model.modelcomponent.modelImpl.Point
+import de.htwg.se.model.modelcomponent.FieldInterface
+import de.htwg.se.model.modelcomponent.FeedbackFieldInterface
+import de.htwg.se.model.modelcomponent.FeedbackInterface
 import de.htwg.se.util.{Observable, Observer}
 import de.htwg.se.aview.GUI
 
@@ -12,21 +15,26 @@ import de.htwg.se.controler.controlercomponent.controlerImpl.Command
 import de.htwg.se.controler.controlercomponent.controlerImpl.Receiver
 import de.htwg.se.controler.controlercomponent.controlerImpl.RemoveCommand
 
+import de.htwg.se.controler.controlercomponent.ControllerInterface
+import de.htwg.se.controler.controlercomponent.GameStateInterface
+import de.htwg.se.controler.controlercomponent.ReceiverInterface
+import de.htwg.se.controler.controlercomponent.CommandInterface
 
-trait GameState {
-  def makeMove(controller: Controller, point: Point, x: Int, y: Int): Unit
+
+trait GameState extends GameStateInterface{
+  def makeMove(controller: ControllerInterface, point: Point, x: Int, y: Int): Unit
 }
 
 class PlayState extends GameState {
-  override def makeMove(controller: Controller, point: Point, x: Int, y: Int): Unit = {
+  override def makeMove(controller: ControllerInterface, point: Point, x: Int, y: Int): Unit = {
     val receiver = controller.getReceiver
     val command = AddCommand(receiver, point, x, y)
     executeCommand(controller, command)
-    controller.feedbackField.updateFeedback(controller.field, x, y)
+    controller.feedbackfield.updateFeedback(controller.field, x, y)
     controller.notifyObservers()
   }
 
-  private def executeCommand(controller: Controller, command: Command): Unit = {
+  private def executeCommand(controller: ControllerInterface, command: CommandInterface): Unit = {
     val result = command.execute()
     result match {
       case Success(_) =>
@@ -37,17 +45,17 @@ class PlayState extends GameState {
   }
 }
 
+
 class GameOverState extends GameState {
-  override def makeMove(controller: Controller, point: Point, x: Int, y: Int): Unit = {
+  override def makeMove(controller: ControllerInterface, point: Point, x: Int, y: Int): Unit = {
     println("Game Over! You cannot make any more moves.")
   }
 }
 
-case class Controller(var field: FieldInterface, var feedbackField: FeedbackFieldInterface, var gui: Option[GUI] = None) extends ControllerInterface, Observable {
-  private var gameState: GameState = new PlayState()
-  private val receiver: Receiver = new Receiver(field)
-  private val commandHistory: Stack[Command] = Stack()
-  private val pointFactory = new PointFactoryInterface
+case class Controller(var field: FieldInterface, var feedbackField: FeedbackFieldInterface, var gui: Option[GUI] = None) extends ControllerInterface {
+  private var gameState: GameStateInterface = new PlayState()
+  private val receiver: ReceiverInterface = new Receiver(field)
+  private val commandHistory: Stack[CommandInterface] = Stack()
 
   def setGui(newGui: GUI): Unit = {
     gui = Some(newGui)
@@ -57,8 +65,7 @@ case class Controller(var field: FieldInterface, var feedbackField: FeedbackFiel
     gameState.makeMove(this, point, x, y)
     field = receiver.field // Update the field with the new field after executing the command
     notifyObservers()
-    }
-
+  }
 
   def undoLastMove(): Unit = {
     if (commandHistory.nonEmpty) {
@@ -68,7 +75,7 @@ case class Controller(var field: FieldInterface, var feedbackField: FeedbackFiel
         case Success(_) =>
           command match {
             case AddCommand(_, point, x, y) =>
-              field = field.put(pointFactory.createPoint(" "), x, y)
+              field = field.put(Point.valueOf(" "), x, y)
               feedbackField.updateFeedback(field, x, y)
             case RemoveCommand(_, x, y) =>
               val removedPoint = command.asInstanceOf[RemoveCommand].removedPoint.getOrElse(throw new IllegalStateException("Error: No point to add during undo."))
@@ -85,26 +92,29 @@ case class Controller(var field: FieldInterface, var feedbackField: FeedbackFiel
     }
   }
 
-  def setGameState(gameState: GameState): Unit = {
+  override def setGameState(gameState: GameStateInterface): Unit = {
     this.gameState = gameState
     notifyObservers()
   }
 
-  override def toString: String = field.toString
-
-  def getReceiver: Receiver = receiver
-
-  def getGameState: GameState = gameState
-
-  def getGuesslength: Int = field.guesslength
-
-  def getPointslength: Int = field.pointslength
-
-  def pointCell(row: Int, col: Int): Option[Point] = field.cell(row, col)
-
-  def feedbackCell(row: Int, col: Int): Feedback = feedbackField.getFeedbackMatrix.cell(row, col)
-
-  def addToCommandHistory(command: Command): Unit = {
+  override def addToCommandHistory(command: CommandInterface): Unit = {
     commandHistory.push(command)
   }
+
+  override def feedbackCell(row: Int, col: Int): Option[FeedbackInterface] = feedbackField.getFeedbackMatrix.cell(row, col)
+
+  override def getGuesslength: Int = field.matrix.guesslength
+
+  override def getPointslength: Int = field.matrix.pointslength
+
+  override def pointCell(row: Int, col: Int): Option[Point] = field.getCell(row, col)
+
+  override def toString: String = field.toString
+
+  def getReceiver: ReceiverInterface = receiver
+
+  def getGameState: GameStateInterface = gameState
+
+  def feedbackfield: FeedbackFieldInterface = feedbackField
 }
+

@@ -1,14 +1,18 @@
 package de.htwg.se.model.modelcomponent
 package modelImpl
 
-case class Matrix[T](rows: Vector[Vector[T]]) extends MatrixInterface[T] {
+case class Matrix[T](rows: Vector[Vector[T]]) {
   def this(pointslength: Int, guesslength: Int, filling: T) =
     this(Vector.tabulate(guesslength, pointslength) { (row, col) => filling })
 
   val guesslength: Int = rows.length
   val pointslength: Int = rows(0).length
 
-  def cell(row: Int, col: Int): T = rows(row)(col)
+  def cell(row: Int, col: Int): Option[T] = 
+    if (row >= 0 && row < guesslength && col >= 0 && col < pointslength) 
+      Some(rows(row)(col)) 
+    else 
+      None
 
   def row(row: Int): Vector[T] = rows(row)
 

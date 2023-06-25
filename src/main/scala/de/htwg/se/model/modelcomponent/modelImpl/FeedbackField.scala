@@ -4,41 +4,48 @@ package modelImpl
 import de.htwg.se.model.modelcomponent.modelImpl.Field
 import de.htwg.se.model.modelcomponent.modelImpl.Matrix
 
+import de.htwg.se.model.modelcomponent.FeedbackFieldInterface
+import de.htwg.se.model.modelcomponent.FieldInterface
+import de.htwg.se.model.modelcomponent.FeedbackInterface
 
 case class FeedbackField(guesslength: Int) extends FeedbackFieldInterface {
   private var feedbackMatrix: Matrix[Feedback] = new Matrix(guesslength, guesslength, Feedback.Nothing)
 
-  def getFeedbackMatrix: Matrix[Feedback] = feedbackMatrix
+  def getFeedbackMatrix: Matrix[FeedbackInterface] = feedbackMatrix.asInstanceOf[Matrix[FeedbackInterface]]
 
-  def updateFeedback(field: Field, x: Int, y: Int): Unit = {
-    val updatedMatrix = feedbackMatrix.replaceCell(y, x, calculateFeedback(field, x, y))
+
+  def updateFeedback(field: FieldInterface, x: Int, y: Int): Unit = {
+    // Cast the field to Field before use
+    val castedField = field.asInstanceOf[Field]
+    val updatedMatrix = feedbackMatrix.replaceCell(y, x, calculateFeedback(castedField, x, y))
     feedbackMatrix = updatedMatrix
-  }
+}
+
 
 
   private def calculateFeedback(field: Field, x: Int, y: Int): Feedback = {
     val guess = field.matrix.row(y)
     val solution = field.matrix.row(x)
     val minLength = Math.min(solution.length, guess.length)
+    var feedback: Feedback = Feedback.Nothing // Variable to store the result
+
     for (i <- 0 until minLength) {
       if (solution(i) == guess(i)) {
-        return Feedback.PositionCorrect
+        feedback = Feedback.PositionCorrect
       } else if (solution.contains(guess(i))) {
-        return Feedback.ColorCorrect
+        feedback = Feedback.ColorCorrect
       }
     }
-    Feedback.Nothing
-  }
+    feedback // Return the stored feedback
+}
 
   override def toString: String = feedbackMatrix.toString
 }
 
-sealed trait Feedback
-object Feedback {
-  case object Nothing extends Feedback
-  case object ColorCorrect extends Feedback
-  case object PositionCorrect extends Feedback
+enum Feedback {
+  case Nothing, ColorCorrect, PositionCorrect
 }
+
 
 implicit class FeedbackMatrixOps(matrix: Matrix[Feedback]) {
   def replaceCell(x: Int, y: Int, feedback: Feedback): Matrix[Feedback] = {
