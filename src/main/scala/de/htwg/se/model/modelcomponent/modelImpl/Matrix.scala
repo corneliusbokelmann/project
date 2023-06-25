@@ -7,7 +7,11 @@ case class Matrix[T](rows: Vector[Vector[T]]) {
   val guesslength: Int = rows.length
   val pointslength: Int = rows(0).length
 
-  def cell(row: Int, col: Int): T = rows(row)(col)
+  def cell(row: Int, col: Int): Option[T] = 
+    if (row >= 0 && row < guesslength && col >= 0 && col < pointslength) 
+      Some(rows(row)(col)) 
+    else 
+      None
 
   def row(row: Int): Vector[T] = rows(row)
 

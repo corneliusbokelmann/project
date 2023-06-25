@@ -3,16 +3,23 @@ package de.htwg.se.model.modelcomponent.modelImpl
 import de.htwg.se.model.modelcomponent.modelImpl.Field
 import de.htwg.se.model.modelcomponent.modelImpl.Matrix
 
+import de.htwg.se.model.modelcomponent.FeedbackFieldInterface
+import de.htwg.se.model.modelcomponent.FieldInterface
+import de.htwg.se.model.modelcomponent.FeedbackInterface
 
-case class FeedbackField(guesslength: Int) {
+case class FeedbackField(guesslength: Int) extends FeedbackFieldInterface {
   private var feedbackMatrix: Matrix[Feedback] = new Matrix(guesslength, guesslength, Feedback.Nothing)
 
-  def getFeedbackMatrix: Matrix[Feedback] = feedbackMatrix
+  def getFeedbackMatrix: Matrix[FeedbackInterface] = feedbackMatrix.asInstanceOf[Matrix[FeedbackInterface]]
 
-  def updateFeedback(field: Field, x: Int, y: Int): Unit = {
-    val updatedMatrix = feedbackMatrix.replaceCell(y, x, calculateFeedback(field, x, y))
+
+  def updateFeedback(field: FieldInterface, x: Int, y: Int): Unit = {
+    // Cast the field to Field before use
+    val castedField = field.asInstanceOf[Field]
+    val updatedMatrix = feedbackMatrix.replaceCell(y, x, calculateFeedback(castedField, x, y))
     feedbackMatrix = updatedMatrix
-  }
+}
+
 
 
   private def calculateFeedback(field: Field, x: Int, y: Int): Feedback = {
@@ -32,12 +39,10 @@ case class FeedbackField(guesslength: Int) {
   override def toString: String = feedbackMatrix.toString
 }
 
-sealed trait Feedback
-object Feedback {
-  case object Nothing extends Feedback
-  case object ColorCorrect extends Feedback
-  case object PositionCorrect extends Feedback
+enum Feedback {
+  case Nothing, ColorCorrect, PositionCorrect
 }
+
 
 implicit class FeedbackMatrixOps(matrix: Matrix[Feedback]) {
   def replaceCell(x: Int, y: Int, feedback: Feedback): Matrix[Feedback] = {

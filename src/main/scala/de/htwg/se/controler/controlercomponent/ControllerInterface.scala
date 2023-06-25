@@ -1,9 +1,12 @@
 package de.htwg.se.controler.controlercomponent
 
-import de.htwg.se.model.modelcomponent.{FieldInterface, Point, PointFactoryInterface}
+import de.htwg.se.model.modelcomponent.modelImpl.Point
+import de.htwg.se.model.modelcomponent.{FieldInterface, FeedbackFieldInterface}
 import de.htwg.se.util.Observable
 
 trait ControllerInterface extends Observable {
+  def field: FieldInterface
+  def feedbackfield: FeedbackFieldInterface
   def makeMove(point: Point, x: Int, y: Int): Unit
   def undoLastMove(): Unit
   def setGameState(gameState: GameStateInterface): Unit
@@ -14,6 +17,7 @@ trait ControllerInterface extends Observable {
 }
 
 trait ReceiverInterface {
+  def field: FieldInterface
   def add(point: Point, x: Int, y: Int): Unit
   def remove(x: Int, y: Int): Option[Point]
   def get(x: Int, y: Int): Option[Point]

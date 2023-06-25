@@ -1,7 +1,7 @@
 package de.htwg.se.aview
 
 import de.htwg.se.controler.controlercomponent.ControllerInterface
-import de.htwg.se.model.modelcomponent.FieldInterface
+import de.htwg.se.model.modelcomponent.modelImpl.Point
 
 
 class StandardInput extends InputStrategy {
@@ -12,7 +12,7 @@ class StandardInput extends InputStrategy {
       case _ =>
         val chars = input.toCharArray
         val color = chars(0).toString
-        val point = PointFactoryInterface.createPoint(color)
+        val point = Point.valueOf(color)
         val x = chars(1).toString.toInt
         val y = chars(2).toString.toInt
         controller.makeMove(point, x, y)

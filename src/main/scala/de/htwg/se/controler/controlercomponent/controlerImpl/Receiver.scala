@@ -1,22 +1,25 @@
 package de.htwg.se.controler.controlercomponent.controlerImpl
 
-import de.htwg.se.model.modelcomponent.{FieldInterface, Point, PointFactoryInterface}
+import de.htwg.se.model.modelcomponent.modelImpl.Point
+import de.htwg.se.model.modelcomponent.FieldInterface
 import scala.util.{Failure, Success, Try}
 
-case class Receiver(var field: FieldInterface) {
+import de.htwg.se.controler.controlercomponent.ReceiverInterface
+
+class Receiver(var field: FieldInterface) extends ReceiverInterface {
   def add(point: Point, x: Int, y: Int): Unit = {
     field = field.put(point, x, y)
   }
 
   def remove(x: Int, y: Int): Option[Point] = {
-    val point = field.matrix.cell(x, y)
-    field = field.put(PointFactoryInterface.createPoint(" "), x, y)
+    val point = field.getCell(x, y)
+    field = field.put(Point.valueOf(" "), x, y)
     point
   }
 
   def get(x: Int, y: Int): Option[Point] = {
     field.matrix.cell(x, y) match {
-      case Some(p) if p == PointFactory.createPoint(" ") => None
+      case Some(p) if p == Point.valueOf(" ") => None
       case point => point
     }
   }
