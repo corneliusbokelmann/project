@@ -17,7 +17,7 @@ trait ControllerInterface extends Observable {
   def getGuesslength: Int
   def getPointslength: Int
   def pointCell(row: Int, col: Int): Option[Point]
-  def feedbackCell(row: Int, col: Int): FeedbackInterface
+  def feedbackCell(row: Int, col: Int): Option[FeedbackInterface]
   def addToCommandHistory(command: CommandInterface): Unit
 }
 

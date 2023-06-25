@@ -27,15 +27,17 @@ case class FeedbackField(guesslength: Int) extends FeedbackFieldInterface {
     val guess = field.matrix.row(y)
     val solution = field.matrix.row(x)
     val minLength = Math.min(solution.length, guess.length)
+    var feedback: Feedback = Feedback.Nothing // Variable to store the result
+
     for (i <- 0 until minLength) {
       if (solution(i) == guess(i)) {
-        return Feedback.PositionCorrect
+        feedback = Feedback.PositionCorrect
       } else if (solution.contains(guess(i))) {
-        return Feedback.ColorCorrect
+        feedback = Feedback.ColorCorrect
       }
     }
-    Feedback.Nothing
-  }
+    feedback // Return the stored feedback
+}
 
   override def toString: String = feedbackMatrix.toString
 }

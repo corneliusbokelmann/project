@@ -4,6 +4,7 @@ package controlerImpl
 import de.htwg.se.model.modelcomponent.modelImpl.Point
 import de.htwg.se.model.modelcomponent.FieldInterface
 import de.htwg.se.model.modelcomponent.FeedbackFieldInterface
+import de.htwg.se.model.modelcomponent.FeedbackInterface
 import de.htwg.se.util.{Observable, Observer}
 import de.htwg.se.aview.GUI
 
@@ -100,6 +101,14 @@ case class Controller(var field: FieldInterface, var feedbackField: FeedbackFiel
     commandHistory.push(command)
   }
 
+  override def feedbackCell(row: Int, col: Int): Option[FeedbackInterface] = feedbackField.getFeedbackMatrix.cell(row, col)
+
+  override def getGuesslength: Int = field.matrix.guesslength
+
+  override def getPointslength: Int = field.matrix.pointslength
+
+  override def pointCell(row: Int, col: Int): Option[Point] = field.getCell(row, col)
+
   override def toString: String = field.toString
 
   def getReceiver: ReceiverInterface = receiver
@@ -108,3 +117,4 @@ case class Controller(var field: FieldInterface, var feedbackField: FeedbackFiel
 
   def feedbackfield: FeedbackFieldInterface = feedbackField
 }
+
