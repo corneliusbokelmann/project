@@ -1,4 +1,5 @@
-package de.htwg.se.model.modelcomponent.modelImpl
+package de.htwg.se.model.modelcomponent
+package modelImpl
 
 import de.htwg.se.model.modelcomponent.modelImpl.Matrix
 import de.htwg.se.model.modelcomponent.modelImpl.Point

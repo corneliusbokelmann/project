@@ -1,4 +1,5 @@
-package de.htwg.se.controler.controlercomponent.controlerImpl
+package de.htwg.se.controler.controlercomponent
+package controlerImpl
 
 import de.htwg.se.model.modelcomponent.modelImpl.Point
 import de.htwg.se.model.modelcomponent.FieldInterface

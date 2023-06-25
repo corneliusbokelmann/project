@@ -3,6 +3,7 @@ package de.htwg.se.controler.controlercomponent
 import de.htwg.se.model.modelcomponent.modelImpl.Point
 import de.htwg.se.model.modelcomponent.{FieldInterface, FeedbackFieldInterface}
 import de.htwg.se.util.Observable
+import de.htwg.se.model.modelcomponent.FeedbackInterface
 
 trait ControllerInterface extends Observable {
   def field: FieldInterface
@@ -13,6 +14,10 @@ trait ControllerInterface extends Observable {
   def toString: String
   def getReceiver: ReceiverInterface
   def getGameState: GameStateInterface
+  def getGuesslength: Int
+  def getPointslength: Int
+  def pointCell(row: Int, col: Int): Option[Point]
+  def feedbackCell(row: Int, col: Int): FeedbackInterface
   def addToCommandHistory(command: CommandInterface): Unit
 }
 

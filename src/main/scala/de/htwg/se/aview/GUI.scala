@@ -13,13 +13,13 @@ class GUI(controller: ControllerInterface) extends MainFrame with Observer {
   preferredSize = new Dimension(800, 600)
 
   // Create a panel for the playing field
-  val gameBoardPanel = new GridPanel(controller.field.matrix.guesslength, controller.field.matrix.pointslength) {
+  val gameBoardPanel = new GridPanel(controller.getGuesslength, controller.getPointslength) {
     for {
-      x <- 0 until controller.field.matrix.guesslength
-      y <- 0 until controller.field.matrix.pointslength
+      x <- 0 until controller.getGuesslength
+      y <- 0 until controller.getPointslength
     } {
       val label = new Label {
-        text = controller.field.matrix.cell(x, y).toString
+        text = controller.pointCell(x, y).toString
         font = new Font("Arial", 1, 24)
         opaque = true
         background = getColorForPoint(controller.field.matrix.cell(x, y))
@@ -62,12 +62,12 @@ class GUI(controller: ControllerInterface) extends MainFrame with Observer {
 
   override def update(): Unit = {
     for {
-      x <- 0 until controller.field.matrix.guesslength
-      y <- 0 until controller.field.matrix.pointslength
+      x <- 0 until controller.getGuesslength
+      y <- 0 until controller.getPointslength
     } {
-      val label = gameBoardPanel.contents(y * controller.field.matrix.guesslength + x).asInstanceOf[Label]
-      label.text = controller.field.matrix.cell(x, y).toString
-      label.background = getColorForPoint(controller.field.matrix.cell(x, y))
+      val label = gameBoardPanel.contents(y * controller.getGuesslength + x).asInstanceOf[Label]
+      label.text = controller.pointCell(x, y).toString
+      label.background = getColorForPoint(controller.pointCell(x, y))
     }
 
     // Update the feedback field labels
