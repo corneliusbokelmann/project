@@ -58,6 +58,12 @@ class GameOverState extends GameState {
   }
 }
 
+class GameWonState extends GameState {
+  override def makeMove(controller: ControllerInterface, point: (Point, Int, Int)): Unit = {
+    println("Game has already been won! No more moves allowed.")
+  }
+}
+
 case class Controller(
   var field: FieldInterface = createField(10, 4), // Adjust the parameters according to your desired grid size
   var feedbackField: FeedbackFieldInterface = createFeedbackField(10, 4), // Adjust the parameters according to your desired grid size
@@ -77,7 +83,6 @@ case class Controller(
   def makeMove(point: (Point, Int, Int)): Unit = {
     gameState.makeMove(this, point)
     field = receiver.field // Update the field with the new field after executing the command(s)
-
     notifyObservers()
   }
 
@@ -93,6 +98,9 @@ case class Controller(
       val (_, x, y) = points(index)
       val newFeedbackField = feedbackField.put(fb, x, y)
       setFeedbackField(newFeedbackField)
+    }
+    if (feedback.forall(_ == FeedbackInterface.PositionCorrect)) {
+      setGameState(new GameWonState())
     }
     notifyObservers()
   }
@@ -127,6 +135,7 @@ case class Controller(
 
   def setFeedbackField(feedbackField: FeedbackFieldInterface): Unit = {
     this.feedbackField = feedbackField
+    notifyObservers()
   }
   override def setGameState(gameState: GameStateInterface): Unit = {
     this.gameState = gameState
@@ -177,7 +186,7 @@ case class Controller(
     val guessPoints: List[Point] = guess.map(_._1)
 
     // We need to calculate feedback for each point in the guess
-    guessPoints.zipWithIndex.map { case (p, i) =>
+    val feedback = guessPoints.zipWithIndex.map { case (p, i) =>
       if (solution(i) == p) {
         FeedbackInterface.PositionCorrect
       } else if (solution.contains(p)) {
@@ -186,13 +195,16 @@ case class Controller(
         FeedbackInterface.Nothing
       }
     }
+    feedback
   }
+
+
+
 
   private def generateRandomCombination(size: Int): Vector[Point] = {
     val colors = Vector(Point.GreenPoint, Point.RedPoint, Point.BluePoint, Point.YellowPoint, Point.OrangePoint, Point.PinkPoint, Point.PurplePoint, Point.BrownPoint)
     scala.util.Random.shuffle(colors).take(size)
   }
-
 }
 
 object Controller {

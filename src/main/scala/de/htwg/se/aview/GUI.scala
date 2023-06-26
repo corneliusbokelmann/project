@@ -8,6 +8,8 @@ import de.htwg.se.model.modelcomponent.FeedbackInterface
 import java.awt.Color
 import javax.swing.BorderFactory
 import de.htwg.se.controler.controlercomponent.ControllerInterface
+import de.htwg.se.controler.controlercomponent.controlerImpl.{GameWonState, GameOverState}
+
 
 class GUI(controller: ControllerInterface) extends MainFrame with Observer {
   title = "Mastermind"
@@ -69,6 +71,16 @@ class GUI(controller: ControllerInterface) extends MainFrame with Observer {
   controller.add(this)
 
   override def update(): Unit = {
+  val gameState = controller.getGameState
+
+  
+  if (gameState.isInstanceOf[GameOverState]) {
+    Dialog.showMessage(
+      contents.head,
+      "Sorry, you've lost. Try again!",
+      title = "Game Over"
+    )
+  } else {
     val maxGuesses = controller.getMaxGuesses
     val guessLength = controller.getGuessLength
 
@@ -84,10 +96,17 @@ class GUI(controller: ControllerInterface) extends MainFrame with Observer {
         feedbackLabel.background = getColorForFeedback(controller.feedbackCell(x, y))
       }
     }
-
     playingFieldPanel.revalidate()
     feedbackPanel.revalidate()
   }
+  if (gameState.isInstanceOf[GameWonState]) {
+    Dialog.showMessage(
+      contents.head,
+      "Congratulations, you've won!",
+      title = "Game Over"
+    )
+  }
+}
 
 
 

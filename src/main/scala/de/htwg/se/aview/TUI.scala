@@ -3,6 +3,7 @@ package de.htwg.se.aview
 import de.htwg.se.controler.controlercomponent.{ControllerInterface, InputStrategy}
 import de.htwg.se.model.modelcomponent.modelImpl.Point
 import de.htwg.se.util.Observer
+import de.htwg.se.controler.controlercomponent.controlerImpl.{GameWonState, GameOverState}
 
 import scala.io.StdIn.readLine
 
@@ -40,6 +41,11 @@ class TUI(controller: ControllerInterface, inputStrategy: InputStrategy) extends
 
   override def update(): Unit = {
     printBoard()
+    if (controller.getGameState.isInstanceOf[GameWonState]) {
+      println("Congratulations, you've won!")
+    } else if (controller.getGameState.isInstanceOf[GameOverState]) {
+      println("Sorry, you've lost. Try again!")
+    }
   }
 
   private def printBoard(): Unit = {
@@ -65,6 +71,5 @@ class TUI(controller: ControllerInterface, inputStrategy: InputStrategy) extends
 
   private def processInput(input: String): Unit = {
     inputStrategy.handleInput(input, controller)
- 
   }
 }
