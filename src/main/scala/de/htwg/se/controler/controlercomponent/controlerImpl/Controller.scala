@@ -7,10 +7,14 @@ import de.htwg.se.model.modelcomponent.FeedbackFieldInterface
 import de.htwg.se.model.modelcomponent.FeedbackInterface
 import de.htwg.se.util.{Observable, Observer}
 import de.htwg.se.aview.GUI
+import de.htwg.se.MastermindModule
 
 import scala.collection.mutable.Stack
 import scala.util.{Failure, Success, Try}
 import com.google.inject.{Inject, Singleton}
+import net.codingwell.scalaguice.InjectorExtensions._
+import de.htwg.se.model.fileIoComponent.FileIOInterface
+import com.google.inject.Guice
 
 
 trait GameState extends GameStateInterface {
@@ -70,6 +74,7 @@ class GameWonState extends GameState {
 case class Controller @Inject() (
   var field: FieldInterface,
   var feedbackField: FeedbackFieldInterface,
+  var fileIo: FileIOInterface,
   var gui: Option[GUI] = None
 ) extends ControllerInterface {
   private var gameState: GameStateInterface = new PlayState()
@@ -200,10 +205,6 @@ case class Controller @Inject() (
     }
     feedback
   }
-
-
-
-
   private def generateRandomCombination(size: Int): Vector[Point] = {
     val colors = Vector(Point.GreenPoint, Point.RedPoint, Point.BluePoint, Point.YellowPoint, Point.OrangePoint, Point.PinkPoint, Point.MagentaPoint, Point.CyanPoint)
     scala.util.Random.shuffle(colors).take(size)

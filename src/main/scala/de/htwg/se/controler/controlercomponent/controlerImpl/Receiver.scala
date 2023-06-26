@@ -1,6 +1,7 @@
 package de.htwg.se.controler.controlercomponent.controlerImpl
 
-import javax.inject.Inject
+
+import com.google.inject.Inject
 
 import de.htwg.se.model.modelcomponent.modelImpl.Point
 import de.htwg.se.model.modelcomponent.FieldInterface
