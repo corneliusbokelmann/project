@@ -1,12 +1,14 @@
 package de.htwg.se.controler.controlercomponent.controlerImpl
 
+import javax.inject.Inject
+
 import de.htwg.se.model.modelcomponent.modelImpl.Point
 import de.htwg.se.model.modelcomponent.FieldInterface
 import scala.util.{Failure, Success, Try}
 
 import de.htwg.se.controler.controlercomponent.ReceiverInterface
 
-class Receiver(var field: FieldInterface) extends ReceiverInterface {
+class Receiver @Inject() (var field: FieldInterface) extends ReceiverInterface {
   def add(point: Point, x: Int, y: Int): Try[Unit] = {
   field.matrix.cell(x, y) match {
     case Some(p) if p == Point.valueFromSymbol(" ") || p == Point.EmptyPoint =>

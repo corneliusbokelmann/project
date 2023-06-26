@@ -1,5 +1,7 @@
 package de.htwg.se.aview
 
+import javax.inject.Inject
+
 import scala.swing._
 import de.htwg.se.util.Observer
 import de.htwg.se.model.modelcomponent.modelImpl.Point
@@ -11,7 +13,7 @@ import de.htwg.se.controler.controlercomponent.ControllerInterface
 import de.htwg.se.controler.controlercomponent.controlerImpl.{GameWonState, GameOverState}
 
 
-class GUI(controller: ControllerInterface) extends MainFrame with Observer {
+class GUI @Inject() (controller: ControllerInterface) extends MainFrame with Observer {
   title = "Mastermind"
   preferredSize = new Dimension(800, 600)
 
@@ -35,7 +37,7 @@ class GUI(controller: ControllerInterface) extends MainFrame with Observer {
 
   // Create input panel for colors and undo
   val inputPanel = new FlowPanel {
-    val colors = List("R", "G", "B", "Y", "O", "P", "U", "N", "K") // Modify with your available colorscase WhitePoint extends Point("W")
+    val colors = List("R", "G", "B", "Y", "O", "P", "C", "M") // Modify with your available colorscase WhitePoint extends Point("W")
 
     colors.zipWithIndex.foreach { case (color, index) =>
       contents += new Button(color) {
@@ -144,6 +146,8 @@ class GUI(controller: ControllerInterface) extends MainFrame with Observer {
       case Some(YellowPoint) => Color.yellow
       case Some(OrangePoint) => Color.orange
       case Some(PinkPoint)   => Color.pink
+      case Some(MagentaPoint) => Color.magenta
+      case Some(CyanPoint)   => Color.cyan
       case _                 => Color.lightGray
     }
   }

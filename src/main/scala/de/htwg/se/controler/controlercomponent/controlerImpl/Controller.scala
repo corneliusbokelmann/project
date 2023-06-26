@@ -10,6 +10,8 @@ import de.htwg.se.aview.GUI
 
 import scala.collection.mutable.Stack
 import scala.util.{Failure, Success, Try}
+import com.google.inject.{Inject, Singleton}
+
 
 trait GameState extends GameStateInterface {
   def makeMove(controller: ControllerInterface, point: (Point, Int, Int)): Unit
@@ -64,9 +66,10 @@ class GameWonState extends GameState {
   }
 }
 
-case class Controller(
-  var field: FieldInterface = createField(10, 4), // Adjust the parameters according to your desired grid size
-  var feedbackField: FeedbackFieldInterface = createFeedbackField(10, 4), // Adjust the parameters according to your desired grid size
+@Singleton
+case class Controller @Inject() (
+  var field: FieldInterface,
+  var feedbackField: FeedbackFieldInterface,
   var gui: Option[GUI] = None
 ) extends ControllerInterface {
   private var gameState: GameStateInterface = new PlayState()
@@ -202,7 +205,7 @@ case class Controller(
 
 
   private def generateRandomCombination(size: Int): Vector[Point] = {
-    val colors = Vector(Point.GreenPoint, Point.RedPoint, Point.BluePoint, Point.YellowPoint, Point.OrangePoint, Point.PinkPoint, Point.PurplePoint, Point.BrownPoint)
+    val colors = Vector(Point.GreenPoint, Point.RedPoint, Point.BluePoint, Point.YellowPoint, Point.OrangePoint, Point.PinkPoint, Point.MagentaPoint, Point.CyanPoint)
     scala.util.Random.shuffle(colors).take(size)
   }
 }

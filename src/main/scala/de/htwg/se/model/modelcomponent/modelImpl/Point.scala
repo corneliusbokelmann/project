@@ -4,12 +4,12 @@ enum Point(val symbol: String):
   case WhitePoint extends Point("W")
   case GreenPoint extends Point("G")
   case RedPoint extends Point("R")
-  case BluePoint extends Point("U")
+  case BluePoint extends Point("B")
   case YellowPoint extends Point("Y")
   case OrangePoint extends Point("O")
   case PinkPoint extends Point("P")
-  case PurplePoint extends Point("N")
-  case BrownPoint extends Point("K")
+  case MagentaPoint extends Point("M")
+  case CyanPoint extends Point("C")
   case EmptyPoint extends Point(" ")
 
 object Point:
@@ -17,12 +17,12 @@ object Point:
     "W" -> WhitePoint,
     "G" -> GreenPoint,
     "R" -> RedPoint,
-    "U" -> BluePoint,
+    "B" -> BluePoint,
     "Y" -> YellowPoint,
     "O" -> OrangePoint,
     "P" -> PinkPoint,
-    "N" -> PurplePoint,
-    "K" -> BrownPoint,
+    "M" -> MagentaPoint,
+    "C" -> CyanPoint,
     " " -> EmptyPoint
   )
 

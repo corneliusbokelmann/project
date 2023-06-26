@@ -35,7 +35,7 @@ class StandardInput extends InputStrategy {
   }
 
   private def handleSingleInput(input: String, index: Int, controller: ControllerInterface): Unit = {
-    val validSymbols = Set("R", "G", "B", "Y", "O", "P", "U", "N", "K")
+    val validSymbols = Set("R", "G", "B", "Y", "O", "P", "C", "M")
     val color = input.toUpperCase
     if (validSymbols.contains(color)) {
       val pointOption = Point.valueFromSymbol(color)
@@ -46,7 +46,7 @@ class StandardInput extends InputStrategy {
           println(s"Unexpected error: $color was recognized as a valid symbol but could not be converted to a Point.")
       }
     } else {
-      println(s"Invalid point symbol: $color. Please enter a valid symbol (G, R, B, Y, O, P, U, N, or K).")
+      println(s"Invalid point symbol: $color. Please enter a valid symbol (G, R, B, Y, O, P, C or M).")
     }
   }
 

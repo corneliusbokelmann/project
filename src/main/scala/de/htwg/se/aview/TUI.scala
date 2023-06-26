@@ -1,6 +1,9 @@
 package de.htwg.se.aview
 
-import de.htwg.se.controler.controlercomponent.{ControllerInterface, InputStrategy}
+import javax.inject.Inject
+
+import de.htwg.se.controler.controlercomponent.ControllerInterface
+import de.htwg.se.controler.controlercomponent.InputStrategy
 import de.htwg.se.model.modelcomponent.modelImpl.Point
 import de.htwg.se.util.Observer
 import de.htwg.se.controler.controlercomponent.controlerImpl.{GameWonState, GameOverState}
@@ -13,7 +16,7 @@ case class InputReceived(input: String) extends TuiEvent
 case object UndoRequested extends TuiEvent
 case object QuitRequested extends TuiEvent
 
-class TUI(controller: ControllerInterface, inputStrategy: InputStrategy) extends Observer {
+class TUI @Inject() (controller: ControllerInterface, inputStrategy: InputStrategy) extends Observer {
   controller.add(this)
 
   def run(): Unit = {
