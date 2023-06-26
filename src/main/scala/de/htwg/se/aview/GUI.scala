@@ -3,7 +3,8 @@ package de.htwg.se.aview
 import scala.swing._
 import de.htwg.se.util.Observer
 import de.htwg.se.model.modelcomponent.modelImpl.Point
-import de.htwg.se.model.modelcomponent.modelImpl.Point.{WhitePoint, BlackPoint, GreenPoint, RedPoint}
+import de.htwg.se.model.modelcomponent.modelImpl.Point._
+import de.htwg.se.model.modelcomponent.FeedbackInterface
 import java.awt.Color
 import javax.swing.BorderFactory
 import de.htwg.se.controler.controlercomponent.ControllerInterface
@@ -12,80 +13,127 @@ class GUI(controller: ControllerInterface) extends MainFrame with Observer {
   title = "Mastermind"
   preferredSize = new Dimension(800, 600)
 
-  // Create a panel for the playing field
-  val gameBoardPanel = new GridPanel(controller.getGuesslength, controller.getPointslength) {
-    for {
-      x <- 0 until controller.getGuesslength
-      y <- 0 until controller.getPointslength
-    } {
-      val label = new Label {
-        text = controller.pointCell(x, y).toString
-        font = new Font("Arial", 1, 24)
-        opaque = true
-        background = getColorForPoint(controller.field.matrix.cell(x, y))
-        border = BorderFactory.createLineBorder(Color.black)
-        preferredSize = new Dimension(60, 60)
-        horizontalAlignment = Alignment.Center
-        verticalAlignment = Alignment.Center
+  val playingFieldPanel = new GridPanel(controller.getMaxGuesses, controller.getGuessLength) {
+    for (x <- 0 until controller.getMaxGuesses) {
+      for (y <- 0 until controller.getGuessLength) {
+        val label = createPointLabel(x, y)
+        contents += label
       }
-      contents += label
     }
   }
 
-  // Create a panel for the feedback field
-  val feedbackFieldPanel = new GridPanel(controller.field.matrix.guesslength, 1) {
-    for {
-      x <- 0 until controller.field.matrix.guesslength
-    } {
-      val label = new Label {
-        text = controller.feedbackfield.getFeedbackMatrix.cell(x, 0).toString
-        font = new Font("Arial", 1, 24)
-        opaque = true
-        background = Color.lightGray
-        border = BorderFactory.createLineBorder(Color.black)
-        preferredSize = new Dimension(60, 60)
-        horizontalAlignment = Alignment.Center
-        verticalAlignment = Alignment.Center
+  val feedbackPanel = new GridPanel(controller.getMaxGuesses, controller.getGuessLength) {
+    for (x <- 0 until controller.getMaxGuesses) {
+      for (y <- 0 until controller.getGuessLength) {
+        val label = createFeedbackLabel(x, y)
+        contents += label
       }
-      contents += label
     }
   }
 
-  // Combine the playing field and feedback field panels into one layout
+  // Create input panel for colors and undo
+  val inputPanel = new FlowPanel {
+    val colors = List("R", "G", "B", "Y", "O", "P", "U", "N", "K") // Modify with your available colorscase WhitePoint extends Point("W")
+
+    colors.zipWithIndex.foreach { case (color, index) =>
+      contents += new Button(color) {
+        reactions += {
+          case event.ButtonClicked(_) =>
+            controller.processInput(color)
+        }
+      }
+    }
+
+    contents += new Button("Undo") {
+      reactions += {
+        case event.ButtonClicked(_) =>
+          controller.undoLastMove()
+      }
+    }
+
+    contents += new Button("Quit") {
+      reactions += {
+        case event.ButtonClicked(_) =>
+          closeOperation()
+      }
+    }
+  }
+
+
   contents = new BorderPanel {
-    layout(gameBoardPanel) = BorderPanel.Position.Center
-    layout(feedbackFieldPanel) = BorderPanel.Position.East
+    layout(playingFieldPanel) = BorderPanel.Position.Center
+    layout(feedbackPanel) = BorderPanel.Position.East
+    layout(inputPanel) = BorderPanel.Position.South
   }
 
-  // Update the GUI when the game state changes
   controller.add(this)
 
   override def update(): Unit = {
-    for {
-      x <- 0 until controller.getGuesslength
-      y <- 0 until controller.getPointslength
-    } {
-      val label = gameBoardPanel.contents(y * controller.getGuesslength + x).asInstanceOf[Label]
-      label.text = controller.pointCell(x, y).toString
-      label.background = getColorForPoint(controller.pointCell(x, y))
+    val maxGuesses = controller.getMaxGuesses
+    val guessLength = controller.getGuessLength
+
+    for (x <- 0 until maxGuesses) {
+      for (y <- 0 until guessLength) {
+        val colorLabel = playingFieldPanel.contents(x * guessLength + y).asInstanceOf[Label]
+        val feedbackLabel = feedbackPanel.contents(x * guessLength + y).asInstanceOf[Label]
+
+        colorLabel.text = controller.pointCell(x, y).toString
+        colorLabel.background = getColorForPoint(controller.pointCell(x, y))
+
+        feedbackLabel.text = controller.feedbackCell(x, y).toString
+        feedbackLabel.background = getColorForFeedback(controller.feedbackCell(x, y))
+      }
     }
 
-    // Update the feedback field labels
-    for {
-      x <- 0 until controller.field.matrix.guesslength
-      label = feedbackFieldPanel.contents(x).asInstanceOf[Label]
-    } {
-      label.text = controller.feedbackfield.getFeedbackMatrix.cell(x, 0).toString
+    playingFieldPanel.revalidate()
+    feedbackPanel.revalidate()
+  }
+
+
+
+  private def createPointLabel(row: Int, col: Int): Label = {
+    new Label {
+      text = controller.pointCell(col, row).toString // Swap row and col
+      font = new Font("Arial", 1, 24)
+      opaque = true
+      background = getColorForPoint(controller.pointCell(col, row)) // Swap row and col
+      border = BorderFactory.createLineBorder(Color.black)
+      preferredSize = new Dimension(60, 60)
+      horizontalAlignment = Alignment.Center
+      verticalAlignment = Alignment.Center
+    }
+  }
+
+  private def createFeedbackLabel(row: Int, col: Int): Label = {
+    new Label {
+      text = controller.feedbackCell(col, row).toString // Swap row and col
+      font = new Font("Arial", 1, 24)
+      opaque = true
+      background = getColorForFeedback(controller.feedbackCell(col, row)) // Swap row and col
+      border = BorderFactory.createLineBorder(Color.black)
+      preferredSize = new Dimension(60, 60)
+      horizontalAlignment = Alignment.Center
+      verticalAlignment = Alignment.Center
     }
   }
 
   private def getColorForPoint(point: Option[Point]): Color = {
     point match {
-      case Some(WhitePoint) => Color.white
-      case Some(BlackPoint) => Color.black
-      case Some(GreenPoint) => Color.green
-      case Some(RedPoint)   => Color.red
-      case _                => Color.lightGray
+      case Some(RedPoint)    => Color.red
+      case Some(GreenPoint)  => Color.green
+      case Some(BluePoint)   => Color.blue
+      case Some(YellowPoint) => Color.yellow
+      case Some(OrangePoint) => Color.orange
+      case Some(PinkPoint)   => Color.pink
+      case _                 => Color.lightGray
+    }
+  }
+
+  private def getColorForFeedback(feedback: Option[FeedbackInterface]): Color = {
+    feedback match {
+      case Some(FeedbackInterface.PositionCorrect) => Color.black
+      case Some(FeedbackInterface.ColorCorrect)    => Color.white
+      case _                                       => Color.lightGray
     }
   }
 

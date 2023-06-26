@@ -11,8 +11,8 @@ trait FieldInterface {
 
 trait FeedbackFieldInterface {
   def getFeedbackMatrix: Matrix[FeedbackInterface]
-  def updateFeedback(field: FieldInterface, x: Int, y: Int): Unit
   override def toString: String
+  def put(feedback: FeedbackInterface, row: Int, col: Int): FeedbackFieldInterface
 }
 
 enum FeedbackInterface {

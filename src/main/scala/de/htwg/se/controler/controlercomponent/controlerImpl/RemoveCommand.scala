@@ -5,39 +5,25 @@ import de.htwg.se.model.modelcomponent.modelImpl.Point
 import de.htwg.se.controler.controlercomponent.CommandInterface
 import de.htwg.se.controler.controlercomponent.ReceiverInterface
 
-
 case class RemoveCommand(receiver: ReceiverInterface, x: Int, y: Int) extends CommandInterface {
   var removedPoint: Option[Point] = None
 
   override def execute(): Try[Unit] = {
-    receiver.get(x, y) match {
-      case Some(p) =>
-        removedPoint = Some(p)
-        Try(receiver.remove(x, y)).map(_ => ())
-      case None => Failure(new IllegalStateException("No element at the specified position."))
+    receiver.remove(x, y) match {
+      case Success(point) =>
+        removedPoint = Some(point.asInstanceOf[Point])
+        Success(())
+      case Failure(ex) =>
+        Failure(ex)
     }
   }
 
   override def undo(): Try[Unit] = removedPoint match {
-    case Some(p) => Try(receiver.add(p, x, y))
+    case Some(point) =>
+      receiver.add(point, x, y) match {
+        case Success(_) => Success(())
+        case Failure(ex) => Failure(ex)
+      }
     case None => Success(())
   }
 }
-
-/* case class RemoveCommand(receiver: Receiver, x: Int, y: Int) extends Command {
-  private var removedPoint: Option[Point] = None
-
-  override def execute(): Try[Unit] = {
-    receiver.get(x, y) match {
-      case Some(p) =>
-        removedPoint = Some(p)
-        Try(receiver.remove(x, y)).map(_ => ())
-      case None => Failure(new IllegalStateException("No element at the specified position."))
-    }
-  }
-
-  override def undo(): Try[Unit] = removedPoint match {
-    case Some(p) => Try(receiver.add(p, x, y))
-    case None => Success(())
-  }
-} */
