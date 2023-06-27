@@ -1,6 +1,6 @@
 package de.htwg.se.aview
 
-import javax.inject.Inject
+import com.google.inject.Inject
 
 import de.htwg.se.controler.controlercomponent.ControllerInterface
 import de.htwg.se.controler.controlercomponent.InputStrategy

@@ -1,6 +1,6 @@
 package de.htwg.se.aview
 
-import javax.inject.Inject
+import com.google.inject.Inject
 
 import scala.swing._
 import de.htwg.se.util.Observer
