@@ -8,6 +8,7 @@ import scala.xml.{Elem, PrettyPrinter, XML, Node}
 import de.htwg.se.model.modelcomponent._
 import de.htwg.se.model.modelcomponent.modelImpl._
 import de.htwg.se.model.fileIoComponent.FileIOInterface
+import de.htwg.se.model.fileIoComponent.GameStateData
 
 class FileIO extends FileIOInterface {
 
@@ -17,23 +18,48 @@ class FileIO extends FileIOInterface {
       directory.mkdir()
     }
   }
-
-  override def save(field: FieldInterface, filePath: String): Boolean = {
+  
+  override def save(data: GameStateData, filePath: String): Unit = {
     createDirectory("XML")
+    val xmlData = gameStateDataToXml(data)
+    val printer = new PrettyPrinter(120, 2)
+    val xmlString = printer.format(xmlData)
     val pw = new PrintWriter(new File(filePath))
-    val prettyPrinter = new PrettyPrinter(120, 4)
-    val xml = prettyPrinter.format(fieldToXml(field.asInstanceOf[Field]))  // Casting to concrete type
-    Try(pw.write(xml)).isSuccess
+    pw.write(xmlString)
+    pw.close()
   }
 
-  override def load(filePath: String): FieldInterface = {
-    val xml = loadFromFile(filePath)
-    xmlToField(xml)
+  override def load(filePath: String): Option[GameStateData] = {
+    try {
+      val xmlData = XML.loadFile(filePath)
+      val gameStateData = xmlToGameStateData(xmlData)
+      Some(gameStateData)
+    } catch {
+      case _: Exception => None
+    }
   }
 
-  private def loadFromFile(filePath: String): Elem = {
-    XML.loadFile(filePath)
+  private def gameStateDataToXml(data: GameStateData): Elem = {
+    <GameStateData>
+      {fieldToXml(data.field)}
+      {feedbackFieldToXml(data.feedbackField)}
+      <gameState>{data.gameState}</gameState>
+      <solution>
+        {data.solution.map(point => pointToXml(point))}
+      </solution>
+    </GameStateData>
   }
+
+  private def xmlToGameStateData(xml: Elem): GameStateData = {
+  val fieldXml = xml \ "field"
+  val field = xmlToField(fieldXml.head.asInstanceOf[Elem])
+  val feedbackFieldXml = xml \ "feedbackField"
+  val feedbackField = xmlToFeedbackField(feedbackFieldXml.head.asInstanceOf[Elem])
+  val gameState = (xml \ "gameState").text
+  val solution = (xml \ "solution" \ "point").map(xmlToPoint).toVector
+  GameStateData(field, feedbackField, gameState, solution)
+}
+
 
   private def fieldToXml(field: Field): Elem = {
     <field>
@@ -54,11 +80,11 @@ class FileIO extends FileIOInterface {
 
   private def matrixToXml(matrix: Matrix[_]): Elem = {
     matrix match {
-      case m: Matrix[Point] =>
+      case m: Matrix[Point] @unchecked =>
         <matrix type="point">
           {matrix.rows.map(row => rowToXml(row.asInstanceOf[Vector[Point]]))}
         </matrix>
-      case m: Matrix[FeedbackInterface] =>
+      case m: Matrix[FeedbackInterface] @unchecked =>
         <matrix type="feedback">
           {matrix.rows.map(row => rowToXml(row.asInstanceOf[Vector[FeedbackInterface]]))}
         </matrix>
@@ -90,7 +116,7 @@ class FileIO extends FileIOInterface {
     <feedback type={feedback.toString}/>
   }
 
-  private def xmlToField(xml: Elem): FieldInterface = {
+  private def xmlToField(xml: Elem): Field = {
     val matrixXml = xml \ "matrix"
     val matrixType = (matrixXml \ "@type").text
     val matrix = xmlToMatrix(matrixXml.head, matrixType)

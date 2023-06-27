@@ -5,9 +5,10 @@ import de.htwg.se.model.modelcomponent.modelImpl._
 import de.htwg.se.controler.controlercomponent._
 import de.htwg.se.model.modelcomponent._
 import de.htwg.se.model.fileIoComponent._
+import de.htwg.se.model.fileIOComponent.fileIoJsonImpl.FileIO
+
 import com.google.inject.{AbstractModule, Provider, Inject}
 
-// Implementations
 
 
 class MastermindModule extends AbstractModule {
@@ -27,7 +28,7 @@ class MastermindModule extends AbstractModule {
     // bind(classOf[GameStateInterface]).to(classOf[GameState])
     // bind(classOf[CommandInterface]).to(classOf[YourConcreteCommandImplementation])
     bind(classOf[InputStrategy]).to(classOf[StandardInput])
-    bind(classOf[FileIOInterface]).to(classOf[fileIoJsonImpl.FileIO]) 
+    bind(classOf[FileIOInterface]).to(classOf[FileIO]) 
   }
 
   private def createField(guessLength: Int, maxLength: Int): FieldInterface = {

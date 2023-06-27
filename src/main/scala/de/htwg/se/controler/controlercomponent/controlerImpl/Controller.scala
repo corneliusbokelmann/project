@@ -8,12 +8,12 @@ import de.htwg.se.model.modelcomponent.FeedbackInterface
 import de.htwg.se.util.{Observable, Observer}
 import de.htwg.se.aview.GUI
 import de.htwg.se.MastermindModule
+import de.htwg.se.model.fileIoComponent.FileIOInterface
 
 import scala.collection.mutable.Stack
 import scala.util.{Failure, Success, Try}
 import com.google.inject.{Inject, Singleton}
 import net.codingwell.scalaguice.InjectorExtensions._
-import de.htwg.se.model.fileIoComponent.FileIOInterface
 import com.google.inject.Guice
 
 
@@ -224,3 +224,5 @@ object Controller {
     FeedbackField(matrix, guessLength)
   }
 }
+
+

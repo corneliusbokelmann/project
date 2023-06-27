@@ -1,7 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: D:\Charly\HTWG\Sem8\SE\project\src\main\scala\de\htwg\se\MastermindModule.scala:30:46 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m30 |[0m    bind(classOf[[35mFileIOInterface[0m]).to(classOf[fileIoXmlImpl.FileIO]) [0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                              ^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                              Not found: fileIoXmlImpl[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
